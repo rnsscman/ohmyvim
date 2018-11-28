@@ -1,1 +1,1 @@
-# vim
+# vim plugins for rnsscman
