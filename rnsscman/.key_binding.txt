@@ -1,35 +1,35 @@
-C-  who     mode    description
-q   default reserved, enter visual block mode   
-w   yjroh   insert  jump to next word, first char
-e   yjroh   insert  jump to next word, last char 
-r   bell ring
-t   default normal  jump back from tag 
-y
-u   default normal  scroll half screen to up
-i   bell ring
-o   defautl normal  ?
-p   ctrlp   normal  call ctrlp
-[
-]   default normal  jump to definition under cursor
-\
-a   bell ring
-s   panic  
-d   default normal  scroll half screen to down
-f   yjroh   normal  call cscope, intead of scroll full screen to down
-g   yjroh   normal  call Gtags
-h   yjroh   normal  cursor move to left in window
-j   yjroh   normal  cursor move to down in window
-k   yjroh   normal  cursor move to up in window
-l   yjroh   normal  cursor move to right in window
-;   not working
-'   not working
-z   default reserved, program make bg
-x   yjroh   normal  close vi
-c   yjroh   normal  close window
-v   default reserved, enter visual block mode
-b   yjroh   insert  jump to prev word, first char, intead of scroll full screen to up
-n   global  normal  preview next tag
-m   yjroh   normal  preview prev tag
-,   not working
-.   not working
-/   not working
+C-  WHO         MODE        DESCRIPTION                                 DEFAULT
+q   vim         normal      enter visual block mode
+w   rnsscman    insert      jump to the beginning of the next word
+e   rnsscman    insert      jump to the end of the next word
+r   ?           ?           bell
+t   vim         normal      jump back from tag that jumped
+y   ?           ?           ?
+u   vim         normal      scroll upward half screen
+i   ?           ?           bell
+o   ?           ?           ?
+p   ctrlp       normal      call ctrlp
+[   ?           ?           ?
+]   vim         normal      jump to definition of tag under cursor
+\   ?           ?           leader!?
+a   ?           ?           bell
+s   ?           ?           panic
+d   vim         normal      scroll downward half screen
+f   rnsscman    normal      call cscope                                 scroll downward full screen
+g   rnsscman    normal      call Gtags
+h   rnsscman    normal      cursor move to left in window
+j   rnsscman    normal      cursor move to down in window
+k   rnsscman    normal      cursor move to up in window
+l   rnsscman    normal      cursor move to right in window
+;   ?           ?           not working
+'   ?           ?           not working
+z   linux       modeless    bg
+x   rnsscman    normal      close vi
+c   rnsscman    normal      close window
+v   vim         normal      enter visual block mode
+b   rnsscman    insert      jump to the beginning of previous word      scroll upward full screen
+n   global      normal      preview next tag
+m   rnsscman    normal      preview prev tag
+,   ?           ?           not working
+.   ?           ?           not working
+/   ?           ?           not working
