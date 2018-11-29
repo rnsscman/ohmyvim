@@ -41,9 +41,9 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-source ~/.vim/.rnsscman/.ctags.vim
-source ~/.vim/.rnsscman/.ctrlp.vim
-source ~/.vim/.rnsscman/.delimitmate.vim
-source ~/.vim/.rnsscman/.global.vim
-source ~/.vim/.rnsscman/.nerdtree.vim
-source ~/.vim/.rnsscman/.tagbar.vim
+source $VIMENVROOT/plugin_script/.ctags.vim
+source $VIMENVROOT/plugin_script/.ctrlp.vim
+source $VIMENVROOT/plugin_script/.delimitmate.vim
+source $VIMENVROOT/plugin_script/.global.vim
+source $VIMENVROOT/plugin_script/.nerdtree.vim
+source $VIMENVROOT/plugin_script/.tagbar.vim
