@@ -19,13 +19,13 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-echo "let \$VIMENVROOT = "\"$PWD\" > $PWD/rc/.vimrc
-cat $PWD/rc/.vimrc.org >> $PWD/rc/.vimrc
+echo "let \$VIMENVROOT = "\"$PWD\" > $PWD/vimrc/.vimrc
+cat $PWD/vimrc/.vimrc.org >> $PWD/vimrc/.vimrc
 
 if [ -e ~/.vimrc ] || [ -L ~/.vimrc ]; then
     mv -v ~/.vimrc ~/.vimrc.org
 fi
-ln -sv $PWD/rc/.vimrc ~/.vimrc
+ln -sv $PWD/vimrc/.vimrc ~/.vimrc
 
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
     vim +PluginInstall +qall

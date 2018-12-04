@@ -3,7 +3,7 @@ colorscheme desert
 syntax on
 filetype on
 
-set number
+"set number
 set ruler
 set visualbell
 set showmatch

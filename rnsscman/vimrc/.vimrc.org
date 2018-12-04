@@ -1,0 +1,3 @@
+source $VIMENVROOT/vimrc/plugin_setup.vim
+source $VIMENVROOT/vimrc/profile.vim
+source $VIMENVROOT/vimrc/key_mapping.vim
