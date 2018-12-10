@@ -41,6 +41,7 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+source $VIMENVROOT/plugin_script/.plugin-test.vim
 source $VIMENVROOT/plugin_script/.ctags.vim
 source $VIMENVROOT/plugin_script/.ctrlp.vim
 source $VIMENVROOT/plugin_script/.delimitmate.vim
@@ -52,3 +53,4 @@ source $VIMENVROOT/plugin_script/.tabular.vim
 source $VIMENVROOT/plugin_script/.tagbar.vim
 source $VIMENVROOT/plugin_script/.vim-airline.vim
 source $VIMENVROOT/plugin_script/.vim-airline-themes.vim
+source $VIMENVROOT/plugin_script/.youcompleteme.vim
