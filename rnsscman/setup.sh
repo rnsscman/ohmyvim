@@ -1,13 +1,20 @@
 #!/bin/sh
 
+# setup vim
+INSTALLED=$(command -v vim)
+# check vim installed
+if [ -z $INSTALLED ]; then
+    sudo apt install vim
+fi
+
 # setup cscope
 if [ -e .setup_cscope.sh ]; then
-    source ./.setup_cscope.sh
+    . ./.setup_cscope.sh
 fi
 
 # setup gtags
 if [ -e .setup_gtags.sh ]; then
-    source ./.setup_gtags.sh
+    . ./.setup_gtags.sh
 fi
 
 # setup vundle
