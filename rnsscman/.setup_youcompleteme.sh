@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# if [ -e $PWD/plugin_script/.ycm_extra_conf.py ]; then
+#     if [ -e ~/.vim/plugin/.ycm_extra_conf.py ]; then
+#         mv -v ~/.vim/plugin/.ycm_extra_conf.py ~/.vim/plugin/.ycm_extra_conf.py.org
+#     fi
+#     cp -v $PWD/plugin_script/.ycm_extra_conf.py ~/.vim/plugin/.ycm_extra_conf.py
+# fi
+
 if [ "$OSTYPE" == "linux-gnu" ]; then
     if [ -e $PWD/plugin_script/.youcompleteme.vim ]; then
         dpkg -s build-essential &> /dev/null
