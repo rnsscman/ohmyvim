@@ -9,7 +9,7 @@ if [ -e ~/.vim/plugin/gtags.vim.org ] && [ -e ~/.vim/plugin/gtags.vim ]; then
     mv -v ~/.vim/plugin/gtags.vim.org ~/.vim/plugin/gtags.vim
 fi
 if [ -d ~/.vim/bundle/Vundle.vim.org ] && [ -d ~/.vim/bundle/Vundle.vim ]; then
-    rm -vrf ~/.vim/bundle/Vundle.vim
+    rm -rfv ~/.vim/bundle/Vundle.vim
     mv -v ~/.vim/bundle/Vundle.vim.org ~/.vim/bundle/Vundle.vim
 fi
 if [ -e ~/.vimrc.org ] || [ -L ~/.vimrc.org ]; then

@@ -48,7 +48,7 @@ source $VIMENVROOT/plugin_script/.delimitmate.vim
 source $VIMENVROOT/plugin_script/.gtags.vim
 source $VIMENVROOT/plugin_script/.nerdcommenter.vim
 source $VIMENVROOT/plugin_script/.nerdtree.vim
-" source $VIMENVROOT/plugin_script/.supertab.vim
+source $VIMENVROOT/plugin_script/.supertab.vim
 source $VIMENVROOT/plugin_script/.tabular.vim
 source $VIMENVROOT/plugin_script/.tagbar.vim
 source $VIMENVROOT/plugin_script/.vim-airline.vim
