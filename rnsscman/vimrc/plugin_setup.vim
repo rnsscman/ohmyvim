@@ -41,14 +41,14 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-source $VIMENVROOT/plugin_script/rnsscman/ctags.vim
-source $VIMENVROOT/plugin_script/rnsscman/ctrlp.vim
-source $VIMENVROOT/plugin_script/rnsscman/delimitmate.vim
-source $VIMENVROOT/plugin_script/rnsscman/nerdcommenter.vim
-source $VIMENVROOT/plugin_script/rnsscman/nerdtree.vim
-source $VIMENVROOT/plugin_script/rnsscman/supertab.vim
-source $VIMENVROOT/plugin_script/rnsscman/tabular.vim
-source $VIMENVROOT/plugin_script/rnsscman/tagbar.vim
-source $VIMENVROOT/plugin_script/rnsscman/vim-airline.vim
-source $VIMENVROOT/plugin_script/rnsscman/vim-airline-themes.vim
-" source $VIMENVROOT/plugin_script/rnsscman/youcompleteme.vim
+source $vimsetuproot/plugin_script/rnsscman/ctags.vim
+source $vimsetuproot/plugin_script/rnsscman/ctrlp.vim
+source $vimsetuproot/plugin_script/rnsscman/delimitmate.vim
+source $vimsetuproot/plugin_script/rnsscman/nerdcommenter.vim
+source $vimsetuproot/plugin_script/rnsscman/nerdtree.vim
+source $vimsetuproot/plugin_script/rnsscman/supertab.vim
+source $vimsetuproot/plugin_script/rnsscman/tabular.vim
+source $vimsetuproot/plugin_script/rnsscman/tagbar.vim
+source $vimsetuproot/plugin_script/rnsscman/vim-airline.vim
+source $vimsetuproot/plugin_script/rnsscman/vim-airline-themes.vim
+" source $vimsetuproot/plugin_script/rnsscman/youcompleteme.vim

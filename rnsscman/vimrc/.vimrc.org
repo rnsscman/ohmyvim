@@ -1,3 +1,3 @@
-source $VIMENVROOT/vimrc/plugin_setup.vim
-source $VIMENVROOT/vimrc/profile.vim
-source $VIMENVROOT/vimrc/key_mapping.vim
+source $vimsetuproot/vimrc/plugin_setup.vim
+source $vimsetuproot/vimrc/profile.vim
+source $vimsetuproot/vimrc/key_mapping.vim

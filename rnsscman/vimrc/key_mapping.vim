@@ -6,9 +6,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-map <C-f> :cs<Space>find<Space>
-map <C-g> :Gtags<Space>
-
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
