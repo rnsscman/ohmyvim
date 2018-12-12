@@ -227,11 +227,11 @@ if !exists("g:Gtags_VerticalWindow")
 endif
 
 if !exists("g:Gtags_Auto_Map")
-    let g:Gtags_Auto_Map = 0
+    let g:Gtags_Auto_Map = 1
 endif
 
 if !exists("g:Gtags_Auto_Update")
-    let g:Gtags_Auto_Update = 0
+    let g:Gtags_Auto_Update = 1
 endif
 
 " 'Dont_Jump_Automatically' is deprecated.
