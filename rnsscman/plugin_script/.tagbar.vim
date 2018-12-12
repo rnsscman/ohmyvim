@@ -2,4 +2,4 @@
 Plugin 'majutsushi/tagbar'
 
 " Quickstart
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>

@@ -18,5 +18,14 @@ if [ -e ~/.vimrc.org ] || [ -L ~/.vimrc.org ]; then
     	mv -v ~/.vimrc.org ~/.vimrc
 fi
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
+    vim +PluginClean +qall
     vim +PluginInstall +qall
+fi
+if [ -d ~/.local/bin ]; then
+    if [ -e ~/.local/bin/mkcscope.sh ]; then
+        rm -v ~/.local/bin/mkcscope.sh
+    fi
+    if [ -e ~/.local/bin/vimproj.sh ]; then
+        rm -v ~/.local/bin/vimproj.sh
+    fi
 fi
