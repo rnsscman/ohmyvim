@@ -557,9 +557,14 @@ if g:Gtags_Auto_Map == 1
 	:nmap <F5> :Gtags<SPACE>
 	:nmap <F6> :Gtags -f %<CR>
 	:nmap <F7> :GtagsCursor<CR>
-	:nmap <F8> :Gozilla<CR>
+    " :nmap <F8> :Gozilla<CR>
 	:nmap <C-n> :cn<CR>
-	:nmap <C-p> :cp<CR>
+	:nmap <C-m> :cp<CR>
 	:nmap <C-\><C-]> :GtagsCursor<CR>
 endif
 let loaded_gtags = 1
+
+" https://www.gnu.org/software/global/manual/global.html#Vim-editor
+" 3.7 Gtags-cscope
+set csprg=gtags-cscope
+:nmap <F8> :cs add GTAGS<CR>
