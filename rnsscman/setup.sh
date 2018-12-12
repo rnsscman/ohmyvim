@@ -30,7 +30,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # setup vimrc
 echo "setup vimrc:"
 # make myvimrc
-echo "let \$VIMENVROOT = "\"$PWD\" > vimrc/.vimrc
+echo "let \$vimsetuproot = "\"$PWD\" > vimrc/.vimrc
 cat vimrc/.vimrc.org >> vimrc/.vimrc
 if [ -e ~/.vimrc ] || [ -L ~/.vimrc ]; then
     if [ -e ~/.vimrc.org ] || [ -L ~/.vimrc.org ]; then
