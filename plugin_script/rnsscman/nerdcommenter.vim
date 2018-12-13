@@ -1,6 +1,3 @@
-" Installation
-Plugin 'scrooloose/nerdcommenter'
-
 " Post Installation
 filetype plugin on
 

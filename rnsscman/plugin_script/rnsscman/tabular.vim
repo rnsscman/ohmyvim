@@ -1,2 +1,0 @@
-" Installation
-Plugin 'godlygeek/tabular'
