@@ -552,11 +552,11 @@ if g:Gtags_Auto_Update == 1
 endif
 " Suggested map:
 if g:Gtags_Auto_Map == 1
-	:nmap <F2> :copen<CR>
-	:nmap <F4> :cclose<CR>
+	" :nmap <F2> :copen<CR>
+	" :nmap <F4> :cclose<CR>
 	:nmap <F5> :Gtags<SPACE>
 	:nmap <F6> :Gtags -f %<CR>
-	:nmap <F7> :GtagsCursor<CR>
+	" :nmap <F7> :GtagsCursor<CR>
     " :nmap <F8> :Gozilla<CR>
 	:nmap <C-n> :cn<CR>
 	:nmap <C-m> :cp<CR>
