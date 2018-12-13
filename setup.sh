@@ -4,7 +4,9 @@
 INSTALLED=$(command -v vim)
 # check vim installed
 if [ -z $INSTALLED ]; then
-    sudo apt install vim
+    if [ $OSTYPE == 'linux-gnu' ]; then
+        sudo apt install vim
+    fi
 fi
 
 # setup cscope
@@ -19,6 +21,7 @@ fi
 
 # setup vundle
 echo "setup vundle:"
+mkdir -pv ~/.vim/bundle
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
     if [ -d ~/.vim/bundle/Vundle.vim.org ]; then
         rm -rfv ~/.vim/bundle/Vundle.vim.org
