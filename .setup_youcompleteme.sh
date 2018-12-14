@@ -7,7 +7,7 @@
 #     cp -v $PWD/plugin_script/.ycm_extra_conf.py ~/.vim/plugin/.ycm_extra_conf.py
 # fi
 
-if [ "$OSTYPE" == "linux-gnu" ]; then
+if [ $OSTYPE == "linux-gnu" ]; then
     if [ -e $PWD/plugin_script/.youcompleteme.vim ]; then
         dpkg -s build-essential &> /dev/null
         if [ $? -ne 0 ]; then
@@ -21,6 +21,7 @@ if [ "$OSTYPE" == "linux-gnu" ]; then
         if [ $? -ne 0 ]; then
             sudo apt install python3-dev
         fi
+        mkdir -pv ~/.vim/bundle
         if [ -d ~/.vim/bundle/youcompleteme ]; then
             if [ -e ~/.vim/bundle/youcompleteme/install.py ]; then
                 echo "Compiling YCM with semantic support for C-family languages:"
@@ -28,10 +29,10 @@ if [ "$OSTYPE" == "linux-gnu" ]; then
             fi
         fi
     fi
-elif [ "$OSTYPE" == "darwin" ]; then
+elif [ $OSTYPE == "darwin" ]; then
     echo "not defined on mac"
-elif [ "$OSTYPE" == "cygwin" ]; then
+elif [ $OSTYPE == "cygwin" ]; then
     echo "not defined on cygwin"
-elif [ "$OSTYPE" == "msys" ]; then
+elif [ $OSTYPE == "msys" ]; then
     echo "not defined on mingw"
 fi
