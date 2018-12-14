@@ -32,11 +32,12 @@ Plugin 'kien/ctrlp.vim'                 " ctrlp
 Plugin 'raimondi/delimitmate'           " delimitmate
 Plugin 'scrooloose/nerdcommenter'       " nerdcommenter
 Plugin 'scrooloose/nerdtree'            " nerdtree
-Plugin 'ervandew/supertab'              " supertab
+" Plugin 'ervandew/supertab'              " supertab
 Plugin 'godlygeek/tabular'              " tabular
 Plugin 'majutsushi/tagbar'              " tagbar
 Plugin 'vim-airline/vim-airline'        " vim-airline
 Plugin 'vim-airline/vim-airline-themes' " vim-airline-themes
+" Plugin 'valloric/youcompleteme'         " youcompleteme
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -70,11 +71,11 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
         source $vimsetuproot/plugin_script/rnsscman/nerdtree.vim
     endif
 endif
-if isdirectory(expand("~/.vim/bundle/supertab"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/supertab.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/supertab.vim
-    endif
-endif
+" if isdirectory(expand("~/.vim/bundle/supertab"))
+"     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/supertab.vim"))
+"         source $vimsetuproot/plugin_script/rnsscman/supertab.vim
+"     endif
+" endif
 if isdirectory(expand("~/.vim/bundle/tabular"))
     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/tabular.vim"))
         source $vimsetuproot/plugin_script/rnsscman/tabular.vim
@@ -95,8 +96,8 @@ if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
         source $vimsetuproot/plugin_script/rnsscman/vim-airline-themes.vim
     endif
 endif
-if isdirectory(expand("~/.vim/bundle/youcompleteme"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/youcompleteme.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/youcompleteme.vim
-    endif
-endif
+" if isdirectory(expand("~/.vim/bundle/youcompleteme"))
+"     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/youcompleteme.vim"))
+"         source $vimsetuproot/plugin_script/rnsscman/youcompleteme.vim
+"     endif
+" endif
