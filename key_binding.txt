@@ -26,7 +26,7 @@ l   rnsscman    cursor move to right in window
 '
 z   vim         Suspend Vim, like ":stop".
 x   vim         Subtract [count] from the number or alphabetic character at or after the cursor.
-c
+c   vim         Interrupt current (search) command.
 v   vim         Start Visual mode blockwise.
 b   vim         Scroll window [count] pages Backwards (upwards) in the buffer.
 n   gtags       Find next keyword.

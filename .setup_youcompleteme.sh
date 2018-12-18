@@ -1,26 +1,11 @@
 #!/bin/sh
 
-# if [ -e $PWD/plugin_script/.ycm_extra_conf.py ]; then
-#     if [ -e ~/.vim/plugin/.ycm_extra_conf.py ]; then
-#         mv -v ~/.vim/plugin/.ycm_extra_conf.py ~/.vim/plugin/.ycm_extra_conf.py.org
-#     fi
-#     cp -v $PWD/plugin_script/.ycm_extra_conf.py ~/.vim/plugin/.ycm_extra_conf.py
-# fi
-
 if [ $OSTYPE == "linux-gnu" ]; then
-    if [ -e $PWD/plugin_script/.youcompleteme.vim ]; then
-        dpkg -s build-essential &> /dev/null
-        if [ $? -ne 0 ]; then
-            sudo apt install build-essential
-        fi
-        dpkg -s cmake &> /dev/null
-        if [ $? -ne 0 ]; then
-            sudo apt install cmake
-        fi
-        dpkg -s python3-dev &> /dev/null
-        if [ $? -ne 0 ]; then
-            sudo apt install python3-dev
-        fi
+    if [ -e $PWD/plugin_script/rnsscman/youcompleteme.vim ]; then
+        echo "install development tools for youcompleteme:"
+        sudo apt install build-essential
+        sudo apt install cmake
+        sudo apt install python3-dev
         mkdir -pv ~/.vim/bundle
         if [ -d ~/.vim/bundle/youcompleteme ]; then
             if [ -e ~/.vim/bundle/youcompleteme/install.py ]; then
