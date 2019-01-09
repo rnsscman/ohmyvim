@@ -51,10 +51,10 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 
 # setup youcompleteme, require package install using vundle
-echo "setup youcompleteme:"
-if [ -e .setup_youcompleteme.sh ]; then
-    . ./.setup_youcompleteme.sh
-fi
+# echo "setup youcompleteme:"
+# if [ -e .setup_youcompleteme.sh ]; then
+#     . ./.setup_youcompleteme.sh
+# fi
 
 # setup vimproj
 echo "setup vimproj:"

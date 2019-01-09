@@ -37,7 +37,7 @@ Plugin 'godlygeek/tabular'              " tabular
 Plugin 'majutsushi/tagbar'              " tagbar
 Plugin 'vim-airline/vim-airline'        " vim-airline
 Plugin 'vim-airline/vim-airline-themes' " vim-airline-themes
-Plugin 'valloric/youcompleteme'         " youcompleteme
+" Plugin 'valloric/youcompleteme'         " youcompleteme
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
