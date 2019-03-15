@@ -14,6 +14,6 @@ fi
 echo "setup vimproj:"
 mkdir -pv ~/.local/bin
 # copy user tool for vim
-if [ -e .vimproj.sh ] || [ ! -e ~/.local/bin/vimproj.sh ]; then
-    cp -v .vimproj.sh ~/.local/bin/vimproj.sh 
+if [ -e .vimtags ] || [ ! -e ~/.local/bin/vimtags ]; then
+    cp -v .vimtags ~/.local/bin/vimtags
 fi

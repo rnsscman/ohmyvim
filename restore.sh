@@ -1,5 +1,3 @@
-#!/bin/sh
-
 if [ -e ~/.vim/plugin/gtags.vim.org ] && [ -e ~/.vim/plugin/gtags.vim ]; then 
     rm -v ~/.vim/plugin/gtags.vim
     mv -v ~/.vim/plugin/gtags.vim.org ~/.vim/plugin/gtags.vim
@@ -22,7 +20,7 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
     vim +PluginInstall +qall
 fi
 if [ -d ~/.local/bin ]; then
-    if [ -e ~/.local/bin/vimproj.sh ]; then
-        rm -v ~/.local/bin/vimproj.sh
+    if [ -e ~/.local/bin/vimtags ]; then
+        rm -v ~/.local/bin/vimtags
     fi
 fi
