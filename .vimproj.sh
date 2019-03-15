@@ -1,26 +1,36 @@
 #!/bin/sh
 
-if [ -e cscope.out ]; then
-    rm -v cscope.out
-fi
-
-if [ -e GPATH ] || [ -e GRTAGS ] || [ -e GTAGS ]; then
-    rm -v G*
-fi
-gtags
-
-if [ -e tags ]; then
-    rm -v tags
-fi
+function tag_clear() {
+    if [ -e tags ]; then
+		rm -v tags
+	fi
+	if [ -e ctags ]; then
+		rm -v ctags
+	fi
+	if [ -e GPATH ]; then
+		rm -v GPATH
+	fi
+	if [ -e GRTAGS ]; then
+		rm -v GRTAGS
+	fi
+	if [ -e GTAGS ]; then
+		rm -v GTAGS
+	fi
+}
 
 if [ $# -eq 0 ]; then
-    ctags -R
-    if [ -e ~/.local/bin/mkcscope.sh ]; then
-        mkcscope.sh
-    fi
+    tag_clear
+    ctags --sort=foldcase -R
+    gtags
 else
-    make tags ARCH=$1
-    if [ -e ~/.local/bin/mkcscope.sh ]; then
-        mkcscope.sh $1
+    if [ "$1" = "arm" ]; then
+        tag_clear
+        if [ ! -e .config ]; then
+            make menuconfig
+        fi
+        make tags ARCH=$1
+        gtags
+    elif [ "$1" = "clean" ]; then
+        tag_clear
     fi
 fi

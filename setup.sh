@@ -9,11 +9,6 @@ if [ -z $INSTALLED ]; then
     fi
 fi
 
-# setup cscope
-if [ -e .setup_cscope.sh ]; then
-    . ./.setup_cscope.sh
-fi
-
 # setup gtags
 if [ -e .setup_gtags.sh ]; then
     . ./.setup_gtags.sh
@@ -24,7 +19,7 @@ echo "setup vundle:"
 mkdir -pv ~/.vim/bundle
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
     if [ -d ~/.vim/bundle/Vundle.vim.org ]; then
-        rm -rfv ~/.vim/bundle/Vundle.vim.org
+        rm -frv ~/.vim/bundle/Vundle.vim.org
     fi
     mv -v ~/.vim/bundle/Vundle.vim ~/.vim/bundle/Vundle.vim.org
 fi
@@ -59,10 +54,6 @@ fi
 # setup vimproj
 echo "setup vimproj:"
 mkdir -pv ~/.local/bin
-# copy cscope database making tool
-if [ -e .mkcscope.sh ] || [ ! -e ~/.local/bin/mkcscope.sh ]; then
-    cp -v .mkcscope.sh ~/.local/bin/mkcscope.sh 
-fi
 # copy user tool for vim
 if [ -e .vimproj.sh ] || [ ! -e ~/.local/bin/vimproj.sh ]; then
     cp -v .vimproj.sh ~/.local/bin/vimproj.sh 

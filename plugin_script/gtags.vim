@@ -227,7 +227,7 @@ if !exists("g:Gtags_VerticalWindow")
 endif
 
 if !exists("g:Gtags_Auto_Map")
-    let g:Gtags_Auto_Map = 1
+    let g:Gtags_Auto_Map = 0
 endif
 
 if !exists("g:Gtags_Auto_Update")
@@ -244,7 +244,7 @@ if !exists("g:Gtags_No_Auto_Jump")
 endif
 
 if !exists("g:Gtags_Close_When_Single")
-    let g:Gtags_Close_When_Single = 0
+    let g:Gtags_Close_When_Single = 1
 endif
 
 " -- ctags-x format 
@@ -552,12 +552,16 @@ if g:Gtags_Auto_Update == 1
 endif
 " Suggested map:
 if g:Gtags_Auto_Map == 1
-	" :nmap <F2> :copen<CR>
-	" :nmap <F4> :cclose<CR>
-	" :nmap <F5> :Gtags<SPACE>
-	" :nmap <F6> :Gtags -f %<CR>
-	" :nmap <F7> :GtagsCursor<CR>
-    " :nmap <F8> :Gozilla<CR>
+	:nmap <F2> :copen<CR>
+	:nmap <F4> :cclose<CR>
+	:nmap <F5> :Gtags<SPACE>
+	:nmap <F6> :Gtags -f %<CR>
+	:nmap <F7> :GtagsCursor<CR>
+	:nmap <F8> :Gozilla<CR>
+	:nmap <C-n> :cn<CR>
+	:nmap <C-p> :cp<CR>
+	:nmap <C-\><C-]> :GtagsCursor<CR>
+else
    	:nmap <C-g> :Gtags<SPACE>
 	:nmap <C-n> :cn<CR>
 	:nmap <C-m> :cp<CR>
@@ -565,7 +569,3 @@ if g:Gtags_Auto_Map == 1
 endif
 let loaded_gtags = 1
 
-" https://www.gnu.org/software/global/manual/global.html#Vim-editor
-" 3.7 Gtags-cscope
-set csprg=gtags-cscope
-:nmap <F8> :cs add GTAGS<CR>

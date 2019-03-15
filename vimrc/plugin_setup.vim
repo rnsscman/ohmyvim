@@ -32,6 +32,7 @@ Plugin 'kien/ctrlp.vim'                 " ctrlp
 Plugin 'raimondi/delimitmate'           " delimitmate
 Plugin 'scrooloose/nerdcommenter'       " nerdcommenter
 Plugin 'scrooloose/nerdtree'            " nerdtree
+Plugin 'SrcExpl'                        " SrcExpl 
 " Plugin 'ervandew/supertab'              " supertab
 Plugin 'godlygeek/tabular'              " tabular
 Plugin 'majutsushi/tagbar'              " tagbar
@@ -69,6 +70,11 @@ endif
 if isdirectory(expand("~/.vim/bundle/nerdtree"))
     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/nerdtree.vim"))
         source $vimsetuproot/plugin_script/rnsscman/nerdtree.vim
+    endif
+endif
+if isdirectory(expand("~/.vim/bundle/SrcExpl"))
+    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/srcexpl.vim"))
+        source $vimsetuproot/plugin_script/rnsscman/srcexpl.vim
     endif
 endif
 " if isdirectory(expand("~/.vim/bundle/supertab"))

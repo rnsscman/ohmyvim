@@ -1,4 +1,17 @@
 NORMAL mode:
+<F1>           
+<F2>           
+<F3>           
+<F4>           
+<F5>           
+<F6>           
+<F7>            tagbar 
+<F8>            srcexpl 
+<F9>            nerdtree 
+<F10>           gtagscscope
+<F11>           
+<F12>           
+
 C-  WHO         DESCRIPTION                                 DEFAULT
 q   vim         Same as CTRL-V.
 w   vim         All CTRL-W commands can also be executed with |:wincmd|,
@@ -6,7 +19,7 @@ e   vim         <- Scroll window [count] lines downwards in the buffer.
 r   vim         Redo [count] changes which were undone.
 t   vim         Jump to [count] older entry in the tag stack (default 1).
 y   vim         <- Scroll window [count] lines upwards in the buffer.
-u   vim         Scroll window Upwards in the buffer.
+u   vim         <- Scroll window Upwards in the buffer.
 i   vim         Go to [count] newer cursor position in jump list (not a motion command).
 o   vim         Go to [count] Older cursor position in jump list (not a motion command).
 p   ctrlp       call ctrlp
@@ -15,7 +28,7 @@ p   ctrlp       call ctrlp
 \
 a   vim         Add [count] to the number or alphabetic character at or after the cursor.
 s   vim         CTRL-S suspends display in many Unix terminals.  Use 's' instead. Type CTRL-Q to resume displaying.
-d   vim         Scroll window Downwards in the buffer. 
+d   vim         <- Scroll window Downwards in the buffer.
 f   vim         Scroll window [count] pages Forwards (downwards) in the buffer.
 g   vim         call gtags <- Prints the current file name ~
 h   rnsscman    cursor move to left in window
