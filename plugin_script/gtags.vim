@@ -562,10 +562,13 @@ if g:Gtags_Auto_Map == 1
 	:nmap <C-p> :cp<CR>
 	:nmap <C-\><C-]> :GtagsCursor<CR>
 else
-   	:nmap <C-g> :Gtags<SPACE>
 	:nmap <C-n> :cn<CR>
 	:nmap <C-m> :cp<CR>
 	:nmap <C-\><C-]> :GtagsCursor<CR>
+	:nmap <C-\>s :Gtags <C-R>=expand("<cword>")<CR><CR>
+	:nmap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
+	:nmap <C-\>g :Gtags -g <C-R>=expand("<cword>")<CR><CR>
+	:nmap <C-\><SPACE> :Gtags<SPACE>
 endif
 let loaded_gtags = 1
 

@@ -243,26 +243,40 @@ function! s:GtagsCscope()
             :nmap <C-@><C-@>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
             ":nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 	    endif
-	" tag command
-	:nmap <C-\><C-n> :tn<CR>
-	:nmap <C-\><C-p> :tp<CR>
-	:nmap <C-n> :cn<CR>
-	:nmap <C-p> :cp<CR>
-	" Context search. See the --from-here option of global(1).
-	:nmap <C-\><C-\><C-]> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-	:nmap <2-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-	:nmap g<LeftMouse>    :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-	:nmap <C-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-	" The following mappings are unnecessary, because you can use the default mapping.
-	":nmap g<RightMouse>   <C-t>
-	":nmap <C-RightMouse>  <C-t>
-	" Short cut key
-	:nmap <C-\><SPACE> :cs find<SPACE>
-	:nmap <C-@><SPACE> :scs find<SPACE>
-	:nmap <C-@><C-@><SPACE> :vert scs find<SPACE>
-	:nmap <F2> :copen<CR>
-	:nmap <F3> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-	:nmap <F4> :cclose<CR>
+        " tag command
+        :nmap <C-\><C-n> :tn<CR>
+        :nmap <C-\><C-p> :tp<CR>
+        :nmap <C-n> :cn<CR>
+        :nmap <C-p> :cp<CR>
+        " Context search. See the --from-here option of global(1).
+        :nmap <C-\><C-\><C-]> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+        :nmap <2-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+        :nmap g<LeftMouse>    :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+        :nmap <C-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+        " The following mappings are unnecessary, because you can use the default mapping.
+        ":nmap g<RightMouse>   <C-t>
+        ":nmap <C-RightMouse>  <C-t>
+        " Short cut key
+        :nmap <C-\><SPACE> :cs find<SPACE>
+        :nmap <C-@><SPACE> :scs find<SPACE>
+        :nmap <C-@><C-@><SPACE> :vert scs find<SPACE>
+        :nmap <F2> :copen<CR>
+        :nmap <F3> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+        :nmap <F4> :cclose<CR>
+    else
+        " normal command
+        :nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+        :nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+        :nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+        :nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+        :nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+        :nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+        :nmap <C-@>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+        " tag command
+        :nmap <C-@><C-n> :tn<CR>
+        :nmap <C-@><C-m> :tp<CR>
+        " Short cut key
+        :nmap <C-@><SPACE> :cs find<SPACE>
     endif
 endfunction
 

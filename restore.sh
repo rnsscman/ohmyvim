@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ -e ~/.vim/plugin/gtags.vim.org ] && [ -e ~/.vim/plugin/gtags.vim ]; then 
     rm -v ~/.vim/plugin/gtags.vim
     mv -v ~/.vim/plugin/gtags.vim.org ~/.vim/plugin/gtags.vim
