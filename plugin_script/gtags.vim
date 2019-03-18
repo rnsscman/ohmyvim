@@ -231,7 +231,7 @@ if !exists("g:Gtags_Auto_Map")
 endif
 
 if !exists("g:Gtags_Auto_Update")
-    let g:Gtags_Auto_Update = 1
+    let g:Gtags_Auto_Update = 0
 endif
 
 " 'Dont_Jump_Automatically' is deprecated.
@@ -244,7 +244,7 @@ if !exists("g:Gtags_No_Auto_Jump")
 endif
 
 if !exists("g:Gtags_Close_When_Single")
-    let g:Gtags_Close_When_Single = 1
+    let g:Gtags_Close_When_Single = 0
 endif
 
 " -- ctags-x format 
@@ -561,14 +561,5 @@ if g:Gtags_Auto_Map == 1
 	:nmap <C-n> :cn<CR>
 	:nmap <C-p> :cp<CR>
 	:nmap <C-\><C-]> :GtagsCursor<CR>
-else
-	:nmap <C-n> :cn<CR>
-	:nmap <C-m> :cp<CR>
-	:nmap <C-\><C-]> :GtagsCursor<CR>
-	:nmap <C-\>s :Gtags <C-R>=expand("<cword>")<CR><CR>
-	:nmap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
-	:nmap <C-\>g :Gtags -g <C-R>=expand("<cword>")<CR><CR>
-	:nmap <C-\><SPACE> :Gtags<SPACE>
 endif
 let loaded_gtags = 1
-

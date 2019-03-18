@@ -28,8 +28,11 @@ else
         if [ ! -e .config ]; then
             make menuconfig
         fi
-        make tags ARCH=$1
-        gtags
+        make ctags ARCH=$1
+        make gtags ARCH=$1
+        if [ ! -e GTAGS ]; then
+            gtags
+        fi
     elif [ "$1" = "clean" ]; then
         tag_clear
     fi

@@ -107,3 +107,13 @@ endif
 "         source $vimsetuproot/plugin_script/rnsscman/youcompleteme.vim
 "     endif
 " endif
+if filereadable(expand("~/.vim/plugin/gtags.vim"))
+    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/mygtags.vim"))
+        source $vimsetuproot/plugin_script/rnsscman/mygtags.vim
+    endif
+endif
+if filereadable(expand("~/.vim/plugin/gtags-cscope.vim"))
+    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/mygtags-cscope.vim"))
+        source $vimsetuproot/plugin_script/rnsscman/mygtags-cscope.vim
+    endif
+endif
