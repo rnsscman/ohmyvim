@@ -10,10 +10,16 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
     vim +PluginInstall +qall
 fi
 
-# setup vimproj
-echo "setup vimproj:"
+# setup vimtags
+echo "setup vimtags:"
 mkdir -pv ~/.local/bin
 # copy user tool for vim
 if [ -e .vimtags ] || [ ! -e ~/.local/bin/vimtags ]; then
     cp -v .vimtags ~/.local/bin/vimtags
+fi
+
+if [ $# -ne 0 ]; then
+    if [ "$1" = "--no-backup" ]; then
+        . ./.clean.sh
+    fi
 fi

@@ -58,3 +58,9 @@ mkdir -pv ~/.local/bin
 if [ -e .vimtags ] || [ ! -e ~/.local/bin/vimtags ]; then
     cp -v .vimtags ~/.local/bin/vimtags
 fi
+
+if [ $# -ne 0 ]; then
+    if [ "$1" = "--no-backup" ]; then
+        . ./.clean.sh
+    fi
+fi

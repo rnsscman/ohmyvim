@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "vimrc cleaning:"
 if [ -e ~/.vim/plugin/gtags.vim.org ]; then 
     rm -v ~/.vim/plugin/gtags.vim.org 
 fi
