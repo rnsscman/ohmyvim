@@ -38,6 +38,7 @@ Plugin 'godlygeek/tabular'              " tabular
 Plugin 'majutsushi/tagbar'              " tagbar
 Plugin 'vim-airline/vim-airline'        " vim-airline
 Plugin 'vim-airline/vim-airline-themes' " vim-airline-themes
+Plugin 'airblade/vim-gitgutter'         " vim-gitgutter
 " Plugin 'valloric/youcompleteme'         " youcompleteme
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -100,6 +101,11 @@ endif
 if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/vim-airline-themes.vim"))
         source $vimsetuproot/plugin_script/rnsscman/vim-airline-themes.vim
+    endif
+endif
+if isdirectory(expand("~/.vim/bundle/vim-gitgutter"))
+    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/vim-gitgutter.vim"))
+        source $vimsetuproot/plugin_script/rnsscman/vim-gitgutter.vim
     endif
 endif
 " if isdirectory(expand("~/.vim/bundle/youcompleteme"))
