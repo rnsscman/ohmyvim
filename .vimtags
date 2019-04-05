@@ -1,12 +1,6 @@
 #!/bin/sh
 
-function tag_clear() {
-    if [ -e tags ]; then
-		rm -v tags
-	fi
-	if [ -e ctags ]; then
-		rm -v ctags
-	fi
+function gtags_remove() {
 	if [ -e GPATH ]; then
 		rm -v GPATH
 	fi
@@ -18,22 +12,29 @@ function tag_clear() {
 	fi
 }
 
+function gtags_create() {
+    if [ $# -eq 0 ]; then
+        gtags_remove
+        gtags
+    else
+        if [ "$1" = "arm" ]; then
+            gtags_remove
+            if [ -e Makefile ]; then
+                make gtags ARCH=$1
+            fi
+            if [ ! -e GTAGS ]; then
+                gtags
+            fi
+        fi 
+    fi
+}
+
 if [ $# -eq 0 ]; then
-    tag_clear
-    ctags --sort=foldcase -R
-    gtags
+    gtags_create
 else
-    if [ "$1" = "arm" ]; then
-        tag_clear
-        if [ ! -e .config ]; then
-            make menuconfig
-        fi
-        make ctags ARCH=$1
-        make gtags ARCH=$1
-        if [ ! -e GTAGS ]; then
-            gtags
-        fi
-    elif [ "$1" = "clean" ]; then
-        tag_clear
+    if [ "$1" = "--clean" ]; then
+        gtags_remove
+    else
+        gtags_create $1
     fi
 fi

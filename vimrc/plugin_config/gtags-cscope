@@ -13,4 +13,4 @@ nmap <C-@>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@><C-n> :tn<CR>
 nmap <C-@><C-m> :tp<CR>
 nmap <C-@><SPACE> :cs find<SPACE>
-nmap <F10> :GtagsCscope<CR>
+nmap <F7> :GtagsCscope<CR>

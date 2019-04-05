@@ -1,8 +1,11 @@
 #!/bin/sh
 
-# setup gtags
 if [ -e .setup_gtags.sh ]; then
-    . ./.setup_gtags.sh
+    if [ $# -eq 0 ]; then
+        . ./.setup_gtags.sh
+    else
+        . ./.setup_gtags.sh $1
+    fi
 fi
 
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
@@ -10,16 +13,10 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
     vim +PluginInstall +qall
 fi
 
-# setup vimtags
-echo "setup vimtags:"
-mkdir -pv ~/.local/bin
-# copy user tool for vim
-if [ -e .vimtags ] || [ ! -e ~/.local/bin/vimtags ]; then
-    cp -v .vimtags ~/.local/bin/vimtags
-fi
-
-if [ $# -ne 0 ]; then
-    if [ "$1" = "--no-backup" ]; then
-        . ./.clean.sh
+if [ -e .vimtags ]; then
+    VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
+    if [ -n $VIMTAGS_PATH ]; then
+        mkdir -pv ~/.local/bin
+        cp -v .vimtags ~/.local/bin/vimtags
     fi
 fi

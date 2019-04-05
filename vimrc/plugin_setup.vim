@@ -29,12 +29,12 @@ Plugin 'VundleVim/Vundle.vim'
 
 " All of your Plugins must be added before the following line
 Plugin 'kien/ctrlp.vim'                 " ctrlp
-Plugin 'raimondi/delimitmate'           " delimitmate
+" Plugin 'raimondi/delimitmate'           " delimitmate
 Plugin 'scrooloose/nerdcommenter'       " nerdcommenter
 Plugin 'scrooloose/nerdtree'            " nerdtree
-Plugin 'SrcExpl'                        " SrcExpl 
+" Plugin 'SrcExpl'                        " SrcExpl
 " Plugin 'ervandew/supertab'              " supertab
-Plugin 'godlygeek/tabular'              " tabular
+" Plugin 'godlygeek/tabular'              " tabular
 Plugin 'majutsushi/tagbar'              " tagbar
 Plugin 'vim-airline/vim-airline'        " vim-airline
 Plugin 'vim-airline/vim-airline-themes' " vim-airline-themes
@@ -54,72 +54,72 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/ctrlp.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/ctrlp.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/ctrlp"))
+        source $myvimrootdir/vimrc/plugin_config/ctrlp
     endif
 endif
-if isdirectory(expand("~/.vim/bundle/delimitmate"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/delimitmate.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/delimitmate.vim
-    endif
-endif
+" if isdirectory(expand("~/.vim/bundle/delimitmate"))
+"     if filereadable(expand("$myvimrootdir/vimrc/plugin_config/delimitmate"))
+"         source $myvimrootdir/vimrc/plugin_config/delimitmate
+"     endif
+" endif
 if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/nerdcommenter.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/nerdcommenter.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/nerdcommenter"))
+        source $myvimrootdir/vimrc/plugin_config/nerdcommenter
     endif
 endif
 if isdirectory(expand("~/.vim/bundle/nerdtree"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/nerdtree.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/nerdtree.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/nerdtree"))
+        source $myvimrootdir/vimrc/plugin_config/nerdtree
     endif
 endif
-if isdirectory(expand("~/.vim/bundle/SrcExpl"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/srcexpl.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/srcexpl.vim
-    endif
-endif
-" if isdirectory(expand("~/.vim/bundle/supertab"))
-"     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/supertab.vim"))
-"         source $vimsetuproot/plugin_script/rnsscman/supertab.vim
+" if isdirectory(expand("~/.vim/bundle/SrcExpl"))
+"     if filereadable(expand("$myvimrootdir/vimrc/plugin_config/srcexpl"))
+"         source $myvimrootdir/vimrc/plugin_config/srcexpl
 "     endif
 " endif
-if isdirectory(expand("~/.vim/bundle/tabular"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/tabular.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/tabular.vim
-    endif
-endif
+" if isdirectory(expand("~/.vim/bundle/supertab"))
+"     if filereadable(expand("$myvimrootdir/vimrc/plugin_config/supertab"))
+"         source $myvimrootdir/vimrc/plugin_config/supertab
+"     endif
+" endif
+" if isdirectory(expand("~/.vim/bundle/tabular"))
+"     if filereadable(expand("$myvimrootdir/vimrc/plugin_config/tabular"))
+"         source $myvimrootdir/vimrc/plugin_config/tabular
+"     endif
+" endif
 if isdirectory(expand("~/.vim/bundle/tagbar"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/tagbar.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/tagbar.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/tagbar"))
+        source $myvimrootdir/vimrc/plugin_config/tagbar
     endif
 endif
 if isdirectory(expand("~/.vim/bundle/vim-airline"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/vim-airline.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/vim-airline.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/vim-airline"))
+        source $myvimrootdir/vimrc/plugin_config/vim-airline
     endif
 endif
 if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/vim-airline-themes.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/vim-airline-themes.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/vim-airline-themes"))
+        source $myvimrootdir/vimrc/plugin_config/vim-airline-themes
     endif
 endif
 if isdirectory(expand("~/.vim/bundle/vim-gitgutter"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/vim-gitgutter.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/vim-gitgutter.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/vim-gitgutter"))
+        source $myvimrootdir/vimrc/plugin_config/vim-gitgutter
     endif
 endif
 " if isdirectory(expand("~/.vim/bundle/youcompleteme"))
-"     if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/youcompleteme.vim"))
-"         source $vimsetuproot/plugin_script/rnsscman/youcompleteme.vim
+"     if filereadable(expand("$myvimrootdir/vimrc/plugin_config/youcompleteme"))
+"         source $myvimrootdir/vimrc/plugin_config/youcompleteme
 "     endif
 " endif
 if filereadable(expand("~/.vim/plugin/gtags.vim"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/mygtags.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/mygtags.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/gtags"))
+        source $myvimrootdir/vimrc/plugin_config/gtags
     endif
 endif
 if filereadable(expand("~/.vim/plugin/gtags-cscope.vim"))
-    if filereadable(expand("$vimsetuproot/plugin_script/rnsscman/mygtags-cscope.vim"))
-        source $vimsetuproot/plugin_script/rnsscman/mygtags-cscope.vim
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/gtags-cscope"))
+        source $myvimrootdir/vimrc/plugin_config/gtags-cscope
     endif
 endif

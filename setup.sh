@@ -1,66 +1,73 @@
 #!/bin/sh
 
-# setup vim
-INSTALLED=$(command -v vim)
-# check vim installed
-if [ -z $INSTALLED ]; then
+VIM_INSTALLED=$(command -v vim) # check vim installed
+if [ -z $VIM_INSTALLED ]; then
     if [ $OSTYPE == 'linux-gnu' ]; then
-        sudo apt install vim
+        sudo apt install vim # vim install
     fi
 fi
 
-# setup gtags
+# gtags install
 if [ -e .setup_gtags.sh ]; then
-    . ./.setup_gtags.sh
+    if [ $# -eq 0 ]; then
+        . ./.setup_gtags.sh
+    else
+        . ./.setup_gtags.sh $1
+    fi
 fi
 
-# setup vundle
-echo "setup vundle:"
+# vundle install
 mkdir -pv ~/.vim/bundle
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
-    if [ -d ~/.vim/bundle/Vundle.vim.org ]; then
-        rm -frv ~/.vim/bundle/Vundle.vim.org
+    if [ $# -ne 0 ] && [ "$1" = "--no-original" ]; then
+        rm -frv ~/.vim/bundle/Vundle.vim
+    else
+        if [ -d ~/.vim/bundle/Vundle.vim.org ]; then
+            rm -frv ~/.vim/bundle/Vundle.vim.org
+        fi
+        mv -v ~/.vim/bundle/Vundle.vim ~/.vim/bundle/Vundle.vim.org
     fi
-    mv -v ~/.vim/bundle/Vundle.vim ~/.vim/bundle/Vundle.vim.org
 fi
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# setup vimrc
-echo "setup vimrc:"
-# make myvimrc
-echo "let \$vimsetuproot = "\"$PWD\" > vimrc/.vimrc
+# .vimrc install
+echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
 cat vimrc/.vimrc.org >> vimrc/.vimrc
 if [ -e ~/.vimrc ] || [ -L ~/.vimrc ]; then
-    if [ -e ~/.vimrc.org ] || [ -L ~/.vimrc.org ]; then
-        rm -v ~/.vimrc.org
+    if [ $# -ne 0 ] && [ "$1" = "--no-original" ]; then
+        rm -v ~/.vimrc
+    else
+        if [ -e ~/.vimrc.org ] || [ -L ~/.vimrc.org ]; then
+            rm -v ~/.vimrc.org
+        fi
+        mv -v ~/.vimrc ~/.vimrc.org
     fi
-    mv -v ~/.vimrc ~/.vimrc.org
 fi
-# make .vimrc in home symbolic link to myvimrc
 ln -sv $PWD/vimrc/.vimrc ~/.vimrc # why not work '.' after 'ln', so '$PWD' is used
 
 # plugin install
-echo "setup plugin..."
 if [ -d ~/.vim/bundle/Vundle.vim ]; then
     vim +PluginInstall +qall
 fi
 
-# setup youcompleteme, require package install using vundle
-# echo "setup youcompleteme:"
-# if [ -e .setup_youcompleteme.sh ]; then
-#     . ./.setup_youcompleteme.sh
-# fi
+# vimtags install
+if [ -e .vimtags ]; then
+    VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
+    if [ -z $VIMTAGS_PATH ]; then
+        if [ -e ~/.profile ]; then
+            echo PATH="$HOME/bin:$HOME/.local/bin:$PATH" >> ~/.profile
+            . ~/.profile
+        else
+            if [ -e ~/.bashrc ]; then
+                echo PATH="$HOME/bin:$HOME/.local/bin:$PATH" >> ~/.bashrc
+                . ~/.bashrc
+            fi
+        fi
+    fi
 
-# setup vimtags
-echo "setup vimtags:"
-mkdir -pv ~/.local/bin
-# copy user tool for vim
-if [ -e .vimtags ] || [ ! -e ~/.local/bin/vimtags ]; then
-    cp -v .vimtags ~/.local/bin/vimtags
-fi
-
-if [ $# -ne 0 ]; then
-    if [ "$1" = "--no-backup" ]; then
-        . ./.clean.sh
+    VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
+    if [ -n $VIMTAGS_PATH ]; then
+        mkdir -pv ~/.local/bin
+        cp -v .vimtags ~/.local/bin/vimtags
     fi
 fi
