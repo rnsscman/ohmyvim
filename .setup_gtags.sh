@@ -43,7 +43,7 @@ if [ -e /usr/local/bin/gtags ] &&
                 rm -v ~/.vim/plugin/gtags-cscope.vim.org
             fi
             mv -v ~/.vim/plugin/gtags-cscope.vim ~/.vim/plugin/gtags-cscope.vim.org
-        if
+        fi
     fi
     cp -v /usr/local/share/gtags/gtags-cscope.vim ~/.vim/plugin/gtags-cscope.vim
 fi
