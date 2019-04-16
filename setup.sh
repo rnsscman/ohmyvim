@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VIM_INSTALLED=$(command -v vim) # check vim installed
+VIM_INSTALLED=$(which vim) # check vim installed
 if [ -z $VIM_INSTALLED ]; then
     if [ $OSTYPE == 'linux-gnu' ]; then
         sudo apt install vim # vim install
