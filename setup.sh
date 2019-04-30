@@ -4,6 +4,11 @@ VIM_INSTALLED=$(which vim) # check vim installed
 if [ -z $VIM_INSTALLED ]; then
     if [ $OSTYPE == 'linux-gnu' ]; then
         sudo apt install vim # vim install
+    elif [ $OSTYPE == 'cygwin' ]; then
+        APTCYG_INSTALLED=$(which apt-cyg) # check apt-cyg installed
+        if [ -z $APTCYG_INSTALLED ]; then
+            apt-cyg install vim
+        fi
     fi
 fi
 
@@ -28,7 +33,9 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
         mv -v ~/.vim/bundle/Vundle.vim ~/.vim/bundle/Vundle.vim.org
     fi
 fi
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+cd ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git
+cd -
 
 # .vimrc install
 echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
@@ -51,23 +58,25 @@ if [ -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 
 # vimtags install
-if [ -e .vimtags ]; then
-    VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
-    if [ -z $VIMTAGS_PATH ]; then
-        if [ -e ~/.profile ]; then
-            echo PATH="$HOME/bin:$HOME/.local/bin:$PATH" >> ~/.profile
-            . ~/.profile
-        else
-            if [ -e ~/.bashrc ]; then
-                echo PATH="$HOME/bin:$HOME/.local/bin:$PATH" >> ~/.bashrc
-                . ~/.bashrc
+if [ $OSTYPE == 'linux-gnu' ]; then
+    if [ -e .vimtags ]; then
+        VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
+        if [ -z $VIMTAGS_PATH ]; then
+            if [ -e ~/.profile ]; then
+                echo PATH="$HOME/bin:$HOME/.local/bin:$PATH" >> ~/.profile
+                . ~/.profile
+            else
+                if [ -e ~/.bashrc ]; then
+                    echo PATH="$HOME/bin:$HOME/.local/bin:$PATH" >> ~/.bashrc
+                    . ~/.bashrc
+                fi
             fi
         fi
-    fi
 
-    VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
-    if [ -n $VIMTAGS_PATH ]; then
-        mkdir -pv ~/.local/bin
-        cp -v .vimtags ~/.local/bin/vimtags
+        VIMTAGS_PATH=$(echo $PATH | grep $HOME/.local/bin)
+        if [ -n $VIMTAGS_PATH ]; then
+            mkdir -pv ~/.local/bin
+            cp -v .vimtags ~/.local/bin/vimtags
+        fi
     fi
 fi
