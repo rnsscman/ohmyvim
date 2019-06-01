@@ -25,6 +25,10 @@ if [ -d ~/.vim/bundle ]; then
     git clone https://github.com/scrooloose/nerdcommenter
     git clone https://github.com/majutsushi/tagbar
     git clone https://github.com/airblade/vim-gitgutter
+if [[ $OSTYPE != 'cygwin' ]]; then
+	git clone https://github.com/vim-airline/vim-airline
+	git clone https://github.com/vim-airline/vim-airline-themes:w
+fi
     cd -
 fi
 
