@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
     PM_CMD='sudo apt'
@@ -27,7 +27,7 @@ if [ -d ~/.vim/bundle ]; then
     git clone https://github.com/airblade/vim-gitgutter
 if [[ $OSTYPE != 'cygwin' ]]; then
 	git clone https://github.com/vim-airline/vim-airline
-	git clone https://github.com/vim-airline/vim-airline-themes:w
+    git clone https://github.com/vim-airline/vim-airline-themes
 fi
     cd -
 fi
