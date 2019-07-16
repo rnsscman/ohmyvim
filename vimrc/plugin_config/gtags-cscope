@@ -1,4 +1,10 @@
+let GtagsCscope_Auto_Map = 0
 let GtagsCscope_Ignore_Case = 1
+let GtagsCscope_Absolute_Path = 0
+let GtagsCscope_Keep_Alive = 0
+if filereadable("./GTAGS")
+    let GtagsCscope_Auto_Load = 1
+endif
 set cscopetag
 
 " gtags-cscope command
@@ -11,6 +17,5 @@ nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@><C-n> :tn<CR>
-nmap <C-@><C-m> :tp<CR>
+nmap <C-@><C-p> :tp<CR>
 nmap <C-@><SPACE> :cs find<SPACE>
-nmap <F7> :GtagsCscope<CR>
