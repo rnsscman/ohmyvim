@@ -5,10 +5,10 @@ let g:Gtags_No_Auto_Jump = 0
 let g:Gtags_Close_When_Single = 1
 
 " gtags command
-nmap <F7> :quit<CR>
-nmap <F8> :quitall<CR>
+nmap <F9> :quit<CR>
+nmap <F10> :quitall<CR>
 nmap <C-n> :cn<CR>
-nmap <C-p> :cp<CR>
+nmap <C-m> :cp<CR>
 nmap <C-\>s :Gtags -s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :Gtags -g <C-R>=expand("<cword>")<CR><CR>

@@ -2,8 +2,10 @@
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
     PM_CMD='sudo apt'
+    RC_ORG='.vimrc4linux.org'
 elif [[ $OSTYPE == *'darwin'* ]]; then
     PM_CMD='brew'
+    RC_ORG='.vimrc4darwin.org'
 elif [[ $OSTYPE == 'cygwin' ]]; then
     PM_CMD='apt-cyg'
 else
@@ -38,9 +40,9 @@ if [ -e .setup_gtags.sh ]; then
 fi
 
 # .vimrc install
-if [ -d vimrc ] && [ -e vimrc/.vimrc.org ]; then
+if [ -d vimrc ] && [ -e vimrc/$RC_ORG ]; then
     echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
-    cat vimrc/.vimrc.org >> vimrc/.vimrc
+    cat vimrc/$RC_ORG >> vimrc/.vimrc
     # why not work '.' after 'ln', so '$PWD' is used
     ln -svf $PWD/vimrc/.vimrc ~/.vimrc 
 fi

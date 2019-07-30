@@ -17,5 +17,5 @@ nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@><C-n> :tn<CR>
-nmap <C-@><C-p> :tp<CR>
+nmap <C-@><C-m> :tp<CR>
 nmap <C-@><SPACE> :cs find<SPACE>

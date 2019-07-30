@@ -1,5 +1,5 @@
 " Change the default mapping and the default command to invoke CtrlP:
-let g:ctrlp_map = '<F9>'
+" let g:ctrlp_map = '<c-p>'
 
 " When invoked, unless a starting directory is specified, CtrlP will set its local working directory according to this variable:
 let g:ctrlp_working_path_mode = 0
@@ -10,4 +10,4 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " http://kien.github.io/ctrlp.vim/#installation
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-nmap <F10> :CtrlPBuffer<CR>
+nmap <C-\>p :CtrlPBuffer<CR>
