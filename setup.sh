@@ -2,7 +2,7 @@
 
 if [ "$OSTYPE" = "linux-gnu" ]; then
     sudo apt install vim-gnome
-elif [ "$OSTYPE" = *"darwin"* ]; then
+elif [[ "$OSTYPE" == *"darwin"* ]]; then
     if [ ! "$(command -v brew)" ]; then
         echo "[error] brew is not installed"
         exit 1
