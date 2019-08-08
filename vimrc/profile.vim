@@ -21,3 +21,4 @@ set incsearch
 set nowrapscan
 set ignorecase
 set smartcase
+set clipboard=unnamedplus

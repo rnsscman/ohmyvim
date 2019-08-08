@@ -1,3 +1,0 @@
-source $myvimrootdir/vimrc/plugin_setup.vim
-source $myvimrootdir/vimrc/profile4darwin.vim
-source $myvimrootdir/vimrc/key_binding.vim
