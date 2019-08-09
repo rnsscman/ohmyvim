@@ -1,18 +1,15 @@
 #!/bin/bash
 
 USE_PLUGIN=0
-USE_OS_CLIPBOARD=0
 if [[ "$OSTYPE" == *"darwin"* ]]; then
     if [ ! "$(command -v brew)" ]; then
         echo "[error] brew is not installed"
         exit 1
     fi
 	USE_PLUGIN=1
-    USE_OS_CLIPBOARD=1
     brew install vim
 elif [ "$OSTYPE" = "linux-gnu" ]; then
 	USE_PLUGIN=1
-    USE_OS_CLIPBOARD=1
     sudo apt install vim-gnome
 elif [ "$OSTYPE" = "cygwin" ]; then
     if [ ! "$(command -v apt-cyg)" ]; then
@@ -82,7 +79,9 @@ if [ -d vimrc ]; then
     if [ "$USE_PLUGIN" -ne 0 ] && [ -e vimrc/plugin_config.vim ]; then
         echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
     fi
-    if [ "$USE_OS_CLIPBOARD" -ne 0 ]; then
+    if [[ "$OSTYPE" == *"darwin"* ]]; then
+        echo "set clipboard=unnamed" >> vimrc/.vimrc
+    elif [ "$OSTYPE" = "linux-gnu" ]; then
         echo "set clipboard=unnamedplus" >> vimrc/.vimrc
     fi
     # why not work '.' after 'ln', so '$PWD' is used
