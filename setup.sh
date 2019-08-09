@@ -1,57 +1,86 @@
 #!/bin/bash
 
-if [ "$OSTYPE" = "linux-gnu" ]; then
-    sudo apt install vim-gnome
-elif [[ "$OSTYPE" == *"darwin"* ]]; then
+USE_PLUGIN=0
+USE_OS_CLIPBOARD=0
+if [[ "$OSTYPE" == *"darwin"* ]]; then
     if [ ! "$(command -v brew)" ]; then
         echo "[error] brew is not installed"
         exit 1
     fi
+	USE_PLUGIN=1
+    USE_OS_CLIPBOARD=1
     brew install vim
+elif [ "$OSTYPE" = "linux-gnu" ]; then
+	USE_PLUGIN=1
+    USE_OS_CLIPBOARD=1
+    sudo apt install vim-gnome
 elif [ "$OSTYPE" = "cygwin" ]; then
     if [ ! "$(command -v apt-cyg)" ]; then
         echo "[error] apt-cyg is not installed"
         exit 1
     fi
     apt-cyg install vim
+elif [ "$OSTYPE" = "msys" ]; then
+	echo "no requirement"
 else
-    echo '[error] This OS is not supported'
+    echo "[error] This OS is not supported"
     exit 1
 fi
 
-# plugin manager install
-if [ ! "$(command -v curl)" ]; then
-	echo "[error] curl is not installed"
-	exit 1
-fi
+if [ "$USE_PLUGIN" -ne 0 ]; then
+	# plugin manager install
+	if [ ! "$(command -v curl)" ]; then
+		echo "[error] curl is not installed"
+		exit 1
+	fi
 
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-# plugin install
-if [ -d ~/.vim/bundle ]; then
-    cd ~/.vim/bundle
-    git clone https://github.com/kien/ctrlp.vim
-    git clone https://github.com/scrooloose/nerdtree
-    git clone https://github.com/scrooloose/nerdcommenter
-    git clone https://github.com/majutsushi/tagbar
-    git clone https://github.com/airblade/vim-gitgutter
-if [ ! "$OSTYPE" = "cygwin" ]; then
-	git clone https://github.com/vim-airline/vim-airline
-    git clone https://github.com/vim-airline/vim-airline-themes
-fi
-    cd -
-fi
+	# plugin install
+	if [ -d ~/.vim/bundle ]; then
+	    cd ~/.vim/bundle
+        if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
+	        git clone https://github.com/kien/ctrlp.vim
+        fi
+        if [ ! -d ~/.vim/bundle/nerdtree ]; then
+	        git clone https://github.com/scrooloose/nerdtree
+        fi
+        if [ ! -d ~/.vim/bundle/nerdcommenter ]; then
+	        git clone https://github.com/scrooloose/nerdcommenter
+        fi
+        if [ ! -d ~/.vim/bundle/tagbar ]; then
+	        git clone https://github.com/majutsushi/tagbar
+        fi
+        if [ ! -d ~/.vim/bundle/vim-gitgutter ]; then
+	        git clone https://github.com/airblade/vim-gitgutter
+        fi
+        if [ ! -d ~/.vim/bundle/vim-airline ]; then
+		    git clone https://github.com/vim-airline/vim-airline
+        fi
+        if [ ! -d ~/.vim/bundle/vim-airline-themes ]; then
+	        git clone https://github.com/vim-airline/vim-airline-themes
+        fi
+	    cd -
+	fi
 
-# gtags install
-if [ -e .setup_gtags.sh ]; then
-    . ./.setup_gtags.sh
+	# gtags install
+	if [ -e .setup_gtags.sh ]; then
+	    . ./.setup_gtags.sh
+	fi
 fi
 
 # .vimrc install
 if [ -d vimrc ] && [ -e vimrc/.vimrc.org ]; then
     echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
-    cat vimrc/.vimrc.org >> vimrc/.vimrc
+    echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
+    echo "source \$myvimrootdir/vimrc/key_binding.vim" >> vimrc/.vimrc
+    if [ "$USE_PLUGIN" -ne 0 ]; then
+        echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
+    fi
+    if [ "$USE_OS_CLIPBOARD" -ne 0 ]; then
+        echo "set clipboard=unnamedplus" >> vimrc/.vimrc
+    fi
     # why not work '.' after 'ln', so '$PWD' is used
     ln -svf $PWD/vimrc/.vimrc ~/.vimrc 
 fi
