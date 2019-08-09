@@ -71,11 +71,15 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
 fi
 
 # .vimrc install
-if [ -d vimrc ] && [ -e vimrc/.vimrc.org ]; then
+if [ -d vimrc ]; then
     echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
-    echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
-    echo "source \$myvimrootdir/vimrc/key_binding.vim" >> vimrc/.vimrc
-    if [ "$USE_PLUGIN" -ne 0 ]; then
+    if [ -e vimrc/profile.vim ]; then
+        echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
+    fi
+    if [ -e vimrc/key_mapping.vim ]; then
+        echo "source \$myvimrootdir/vimrc/key_mapping.vim" >> vimrc/.vimrc
+    fi
+    if [ "$USE_PLUGIN" -ne 0 ] && [ -e vimrc/plugin_config.vim ]; then
         echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
     fi
     if [ "$USE_OS_CLIPBOARD" -ne 0 ]; then

@@ -1,3 +1,0 @@
-source $myvimrootdir/vimrc/plugin_config.vim
-source $myvimrootdir/vimrc/profile.vim
-source $myvimrootdir/vimrc/key_binding.vim
