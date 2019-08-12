@@ -49,34 +49,40 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
         if [ ! -d ~/.vim/bundle/tagbar ]; then
 	        git clone https://github.com/majutsushi/tagbar
         fi
-        if [ ! -d ~/.vim/bundle/vim-gitgutter ]; then
-	        git clone https://github.com/airblade/vim-gitgutter
-        fi
         if [ ! -d ~/.vim/bundle/vim-airline ]; then
 		    git clone https://github.com/vim-airline/vim-airline
         fi
         if [ ! -d ~/.vim/bundle/vim-airline-themes ]; then
 	        git clone https://github.com/vim-airline/vim-airline-themes
         fi
+        if [ ! -d ~/.vim/bundle/vim-easymotion ]; then
+            git clone https://github.com/easymotion/vim-easymotion
+        fi
+        if [ ! -d ~/.vim/bundle/vim-gitgutter ]; then
+	        git clone https://github.com/airblade/vim-gitgutter
+        fi
 	    cd -
 	fi
-
-	# gtags install
-	if [ -e .setup_gtags.sh ]; then
-	    . ./.setup_gtags.sh
-	fi
+	if [ ! "$(command -v gtags)" ] ||
+        [ ! -e ~/.vim/plugin/gtags.vim ] ||
+        [ ! -e ~/.vim/plugin/gtags-cscope.vim ]; then
+		# gtags install
+        if [ -e ./.setup_gtags.sh ]; then
+            source ./.setup_gtags.sh
+        fi
+    fi
 fi
 
 # .vimrc install
-if [ -d vimrc ]; then
+if [ -d ./vimrc ]; then
     echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
-    if [ -e vimrc/profile.vim ]; then
+    if [ -e ./vimrc/profile.vim ]; then
         echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
     fi
-    if [ -e vimrc/key_mapping.vim ]; then
+    if [ -e ./vimrc/key_mapping.vim ]; then
         echo "source \$myvimrootdir/vimrc/key_mapping.vim" >> vimrc/.vimrc
     fi
-    if [ "$USE_PLUGIN" -ne 0 ] && [ -e vimrc/plugin_config.vim ]; then
+    if [ "$USE_PLUGIN" -ne 0 ] && [ -e ./vimrc/plugin_config.vim ]; then
         echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
     fi
     if [[ "$OSTYPE" == *"darwin"* ]]; then

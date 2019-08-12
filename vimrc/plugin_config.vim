@@ -52,6 +52,11 @@ if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
         source $myvimrootdir/vimrc/plugin_config/vim-airline-themes
     endif
 endif
+if isdirectory(expand("~/.vim/bundle/vim-easymotion"))
+    if filereadable(expand("$myvimrootdir/vimrc/plugin_config/vim-easymotion"))
+        source $myvimrootdir/vimrc/plugin_config/vim-easymotion
+    endif
+endif
 " if isdirectory(expand("~/.vim/bundle/youcompleteme"))
 "     if filereadable(expand("$myvimrootdir/vimrc/plugin_config/youcompleteme"))
 "         source $myvimrootdir/vimrc/plugin_config/youcompleteme
