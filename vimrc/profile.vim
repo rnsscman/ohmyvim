@@ -1,8 +1,9 @@
-colorscheme desert
+if has("syntax")
+    syntax on
+endif
+filetype plugin indent on
 
-syntax on
-filetype on
-
+" display
 set number
 set ruler
 set visualbell
@@ -21,3 +22,7 @@ set incsearch
 set nowrapscan
 set ignorecase
 set smartcase
+" edit
+set autowrite
+set autoread
+set paste

@@ -40,6 +40,15 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
         if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
 	        git clone https://github.com/kien/ctrlp.vim
         fi
+        if [ ! -d ~/.vim/bundle/gruvbox ]; then
+			git clone https://github.com/morhetz/gruvbox.git
+        fi
+        if [ ! -e ~/.vim/colors/gruvbox.vim ]; then
+			if [ ! -d ~/.vim/colors ]; then
+				mkdir -p ~/.vim/colors
+			fi
+			cp -r ~/.vim/bundle/gruvbox/colors ~/.vim
+		fi
         if [ ! -d ~/.vim/bundle/nerdtree ]; then
 	        git clone https://github.com/scrooloose/nerdtree
         fi

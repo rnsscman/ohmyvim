@@ -1,8 +1,7 @@
-nmap <F5> :quit<CR>
-nmap <F6> :quitall<CR>
-nmap <F7> :bnext<CR>
-nmap <F8> :bprevious<CR>
-nmap <F9> :bdelete<CR>
+nmap <F6> :bnext<CR>
+nmap <F7> :bprevious<CR>
+nmap <F8> :bdelete<CR>
+nmap <F9> :quitall<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
