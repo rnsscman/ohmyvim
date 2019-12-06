@@ -3,7 +3,6 @@ execute pathogen#infect()
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
 	colorscheme gruvbox
 	set background=dark
-    map <silent> <F5> :call gruvbox#bg_toggle()<CR>
 endif
 
 if filereadable(expand("~/.vim/plugin/gtags.vim"))
