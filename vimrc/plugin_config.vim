@@ -51,8 +51,8 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
 	" Change the default mapping and the default command to invoke CtrlP:
 	" let g:ctrlp_map = '<c-p>'
 	let g:ctrlp_map = ''
-	nmap <F10> :CtrlP<CR>
-	nmap <F11> :CtrlPBuffer<CR>
+	nmap <F9> :CtrlP<CR>
+	nmap <F10> :CtrlPBuffer<CR>
 
 	" When invoked, unless a starting directory is specified, CtrlP will set its local working directory according to this variable:
 	let g:ctrlp_working_path_mode = 0
