@@ -49,11 +49,11 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
 			fi
 			cp -r ~/.vim/bundle/gruvbox/colors ~/.vim
 		fi
-        if [ ! -d ~/.vim/bundle/nerdtree ]; then
-	        git clone https://github.com/scrooloose/nerdtree
-        fi
         if [ ! -d ~/.vim/bundle/nerdcommenter ]; then
 	        git clone https://github.com/scrooloose/nerdcommenter
+        fi
+        if [ ! -d ~/.vim/bundle/nerdtree ]; then
+	        git clone https://github.com/scrooloose/nerdtree
         fi
         if [ ! -d ~/.vim/bundle/tagbar ]; then
 	        git clone https://github.com/majutsushi/tagbar
@@ -66,6 +66,9 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
         fi
         if [ ! -d ~/.vim/bundle/vim-easymotion ]; then
             git clone https://github.com/easymotion/vim-easymotion
+        fi
+        if [ ! -d ~/.vim/bundle/vim-fugitive ]; then
+			git clone https://github.com/tpope/vim-fugitive
         fi
         if [ ! -d ~/.vim/bundle/vim-gitgutter ]; then
 	        git clone https://github.com/airblade/vim-gitgutter
