@@ -1,10 +1,21 @@
 execute pathogen#infect()
 
-if filereadable(expand("~/.vim/colors/gruvbox.vim"))
-	colorscheme gruvbox
-	set background=dark
+" SET THEME
+set background=dark
+" set background=light
+if isdirectory(expand("~/.vim/bundle/gruvbox"))
+    colorscheme gruvbox
 endif
+" if isdirectory(expand("~/.vim/bundle/onehalf"))
+"     colorscheme onehalflight
+"     let g:airline_theme='onehalfdark'
+" endif
+" if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
+"     let g:solarized_termcolors=256
+"     colorscheme solarized
+" endif
 
+" SET TAG-SYSTEM
 if filereadable(expand("~/.vim/plugin/gtags.vim"))
 	let g:Gtags_VerticalWindow = 0
 	let g:Gtags_Auto_Map = 0
@@ -47,6 +58,7 @@ if filereadable(expand("~/.vim/plugin/gtags-cscope.vim"))
 	nmap <C-\><C-\><C-]> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
 endif
 
+" SET OTHERS
 if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
 	" Change the default mapping and the default command to invoke CtrlP:
 	" let g:ctrlp_map = '<c-p>'
@@ -64,7 +76,8 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
 	set runtimepath^=~/.vim/bundle/ctrlp.vim
 endif
 
-if isdirectory(expand("~/.vim/bundle/delimitmate"))
+if isdirectory(expand("~/.vim/bundle/indentline"))
+    set list lcs=tab:\|\ 
 endif
 
 if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
@@ -138,6 +151,14 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
 	nmap <F3> :NERDTreeToggle<CR>
 endif
 
+
+if isdirectory(expand("~/.vim/bundle/rainbow_parentheses.vim"))
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+endif
+
 if isdirectory(expand("~/.vim/bundle/SrcExpl"))
 	" // The switch of the Source Explorer
 	nmap <F8> :SrcExplToggle<CR>
@@ -200,12 +221,6 @@ if isdirectory(expand("~/.vim/bundle/SrcExpl"))
 	" let g:SrcExpl_nextDefKey = "<F4>"
 endif
 
-if isdirectory(expand("~/.vim/bundle/supertab"))
-endif
-
-if isdirectory(expand("~/.vim/bundle/tabular"))
-endif
-
 if isdirectory(expand("~/.vim/bundle/tagbar"))
 	if filereadable("./GTAGS")
 		autocmd StdinReadPre * let s:std_in=1
@@ -236,6 +251,9 @@ if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
 	let g:airline_theme='simple'
 endif
 
+if isdirectory(expand("~/.vim/bundle/vim-bookmarks"))
+endif
+
 if isdirectory(expand("~/.vim/bundle/vim-easymotion"))
 	let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -254,6 +272,15 @@ if isdirectory(expand("~/.vim/bundle/vim-easymotion"))
 	" JK motions: Line motions
 	map <Leader>j <Plug>(easymotion-j)
 	map <Leader>k <Plug>(easymotion-k)
+endif
+
+if isdirectory(expand("~/.vim/bundle/vim-fugitive"))
+endif
+
+if isdirectory(expand("~/.vim/bundle/vim-gitgutter"))
+endif
+
+if isdirectory(expand("~/.vim/bundle/vim-signature"))
 endif
 
 if isdirectory(expand("~/.vim/bundle/youcompleteme"))
