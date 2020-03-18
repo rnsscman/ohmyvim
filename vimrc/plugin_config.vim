@@ -77,7 +77,7 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
 endif
 
 if isdirectory(expand("~/.vim/bundle/indentline"))
-    set list lcs=tab:\|\ 
+    let g:indentLine_enabled = 1
 endif
 
 if isdirectory(expand("~/.vim/bundle/nerdcommenter"))

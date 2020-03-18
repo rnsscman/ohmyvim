@@ -14,6 +14,7 @@ set cursorline
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set list lcs=tab:\|.,trail:~
 " indent
 set autoindent
 set cindent
