@@ -153,10 +153,10 @@ endif
 
 
 if isdirectory(expand("~/.vim/bundle/rainbow_parentheses.vim"))
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
+    " au VimEnter * RainbowParenthesesToggle
+    " au Syntax * RainbowParenthesesLoadRound
+    " au Syntax * RainbowParenthesesLoadSquare
+    " au Syntax * RainbowParenthesesLoadBraces
 endif
 
 if isdirectory(expand("~/.vim/bundle/SrcExpl"))
