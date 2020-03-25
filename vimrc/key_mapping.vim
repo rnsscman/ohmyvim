@@ -1,7 +1,7 @@
-nmap <F5> :bnext<CR>
-nmap <F6> :bprevious<CR>
-nmap <F7> :bdelete<CR>
-nmap <F8> :quitall<CR>
+nmap <F2> :bnext<CR>
+nmap <F3> :bprevious<CR>
+nmap <F4> :quitall<CR>
+nmap <F5> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j

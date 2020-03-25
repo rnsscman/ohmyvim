@@ -147,8 +147,8 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
 	" How can I close vim if the only window left open is a NERDTree?
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-	nmap <F2> :NERDTreeFind<CR>
-	nmap <F3> :NERDTreeToggle<CR>
+	" nmap <F6> :NERDTreeFind<CR>
+	nmap <F6> :NERDTreeToggle<CR>
 endif
 
 
@@ -227,7 +227,7 @@ if isdirectory(expand("~/.vim/bundle/tagbar"))
 		autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | TagbarOpen | endif
 	endif
 
-	nmap <F4> :TagbarToggle<CR>
+	nmap <F7> :TagbarToggle<CR>
 endif
 
 if isdirectory(expand("~/.vim/bundle/vim-airline"))
