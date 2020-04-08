@@ -29,14 +29,20 @@ set smartcase
 set autowrite
 set autoread
 
-function TrimWhiteSpace()
+function RemoveTrailingSpace()
     %s/\s\+$//e
     ''
 endfunction
-command! RemoveWhiteSpace call TrimWhiteSpace()
+command! RemoveTrailingSpace call RemoveTrailingSpace()
 
-function RemoveCR()
+function RemoveNewLineChar()
     %s///g
     ''
 endfunction
-command! RemoveCR call RemoveCR()
+command! RemoveNewLineChar call RemoveNewLineChar()
+
+function TabToSpace()
+    set expandtab
+    retab
+endfunction
+command! TabToSpace call TabToSpace()
