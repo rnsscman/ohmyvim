@@ -63,8 +63,8 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
     " Change the default mapping and the default command to invoke CtrlP:
     " let g:ctrlp_map = '<c-p>'
     let g:ctrlp_map = ''
-    nmap <F9> :CtrlP<CR>
-    nmap <F10> :CtrlPBuffer<CR>
+    nmap <Leader>f :CtrlP<CR>
+    nmap <Leader>b :CtrlPBuffer<CR>
 
     " When invoked, unless a starting directory is specified, CtrlP will set its local working directory according to this variable:
     let g:ctrlp_working_path_mode = 0
@@ -147,8 +147,7 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
     " How can I close vim if the only window left open is a NERDTree?
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-    nmap <F6> :NERDTreeFind<CR>
-    nmap <F7> :NERDTreeToggle<CR>
+    nmap <Leader>n :NERDTreeToggle<CR>
 endif
 
 
@@ -227,7 +226,7 @@ if isdirectory(expand("~/.vim/bundle/tagbar"))
         autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | TagbarOpen | endif
     endif
 
-    nmap <F8> :TagbarToggle<CR>
+    nmap <Leader>t :TagbarToggle<CR>
 endif
 
 if isdirectory(expand("~/.vim/bundle/vim-airline"))
