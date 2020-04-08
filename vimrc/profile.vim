@@ -28,3 +28,15 @@ set smartcase
 " edit
 set autowrite
 set autoread
+
+function TrimWhiteSpace()
+    %s/\s\+$//e
+    ''
+endfunction
+command! RemoveWhiteSpace call TrimWhiteSpace()
+
+function RemoveCR()
+    %s///g
+    ''
+endfunction
+command! RemoveCR call RemoveCR()
