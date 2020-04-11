@@ -106,7 +106,7 @@ if [ -d ./vimrc ]; then
         echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
     fi
     if [ -e ./vimrc/key_mapping.vim ]; then
-        echo "source \$myvimrootdir/vimrc/key_mapping.vim" >> vimrc/.vimrc
+        echo "source \$myvimrootdir/vimrc/keymap.vim" >> vimrc/.vimrc
     fi
     if [ "$USE_PLUGIN" -ne 0 ] && [ -e ./vimrc/plugin_config.vim ]; then
         echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
