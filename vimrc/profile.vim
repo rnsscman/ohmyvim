@@ -28,5 +28,3 @@ set smartcase
 " edit
 set autowrite
 set autoread
-" clipboard
-set clipboard=unnamedplus

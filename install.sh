@@ -38,14 +38,15 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
     if [ -d ~/.vim/bundle ]; then
         cd ~/.vim/bundle
         # THEME
+        if [ ! -d ~/.vim/bundle/dracula ]; then
+            git clone https://github.com/dracula/vim dracula
+        fi
         if [ ! -d ~/.vim/bundle/gruvbox ]; then
             git clone https://github.com/morhetz/gruvbox.git
         fi
         if [ ! -d ~/.vim/bundle/onehalf ]; then
             git clone https://github.com/sonph/onehalf.git
-        fi
-        if [ ! -d ~/.vim/bundle/vim-colors-solarized ]; then
-            git clone https://github.com/altercation/vim-colors-solarized.git
+            cp -v onehalf/vim/colors/* ../colors
         fi
         # OTHERS
         if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then

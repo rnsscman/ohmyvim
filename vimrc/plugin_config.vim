@@ -3,18 +3,17 @@ execute pathogen#infect()
 " SET THEME
 set background=dark
 " set background=light
-if isdirectory(expand("~/.vim/bundle/gruvbox"))
-    colorscheme gruvbox
+if isdirectory(expand("~/.vim/bundle/dracula"))
+    colorscheme dracula
 endif
+" if isdirectory(expand("~/.vim/bundle/gruvbox"))
+"     colorscheme gruvbox
+" endif
 " if isdirectory(expand("~/.vim/bundle/onehalf"))
-"     colorscheme onehalflight
+"     colorscheme onehalfdark
 "     let g:airline_theme='onehalfdark'
 " endif
-" if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
-"     let g:solarized_termcolors=256
-"     colorscheme solarized
-" endif
-
+"
 " SET TAG-SYSTEM
 if filereadable(expand("~/.vim/plugin/gtags.vim"))
     let g:Gtags_VerticalWindow = 0
