@@ -105,17 +105,19 @@ if [ -d ./vimrc ]; then
     if [ -e ./vimrc/profile.vim ]; then
         echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
     fi
-    if [ -e ./vimrc/key_mapping.vim ]; then
+    if [ -e ./vimrc/keymap.vim ]; then
         echo "source \$myvimrootdir/vimrc/keymap.vim" >> vimrc/.vimrc
+    fi
+    if [ -e ./vimrc/function.vim ]; then
+        echo "source \$myvimrootdir/vimrc/function.vim" >> vimrc/.vimrc
     fi
     if [ "$USE_PLUGIN" -ne 0 ] && [ -e ./vimrc/plugin_config.vim ]; then
         echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
     fi
-    echo '" clipboard' >> vimrc/profile.vim
     if [[ "$OSTYPE" == *"darwin"* ]]; then
-        echo "set clipboard=unnamed" >> vimrc/profile.vim
+        echo "set clipboard=unnamed" >> vimrc/.vimrc
     elif [ "$OSTYPE" = "linux-gnu" ]; then
-        echo "set clipboard=unnamedplus" >> vimrc/profile.vim
+        echo "set clipboard=unnamedplus" >> vimrc/.vimrc
     fi
     # why not work '.' after 'ln', so '$PWD' is used
     ln -svf $PWD/vimrc/.vimrc ~/.vimrc
