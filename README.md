@@ -1,1 +1,1 @@
-# vim plugins for rnsscman
+# vim environment setup script
