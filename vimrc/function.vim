@@ -1,17 +1,13 @@
-function RemoveTrailingSpace()
-    %s/\s\+$//e
-    ''
-endfunction
-command! RemoveTrailingSpace call RemoveTrailingSpace()
-
-function RemoveNewLineChar()
-    %s///g
-    ''
-endfunction
-command! RemoveNewLineChar call RemoveNewLineChar()
-
 function TabToSpace()
     set expandtab
     retab
 endfunction
 command! TabToSpace call TabToSpace()
+
+" remove
+command! RemoveTrailingSpace :%s/\s\+$//ge
+command! RemoveNewLineChar :%s///ge
+
+" toggle
+command! LineNumToggle :set number!
+command! PasteToggle :set paste!
