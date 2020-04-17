@@ -73,6 +73,9 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
         if [ ! -d ~/.vim/bundle/vim-airline-themes ]; then
             git clone https://github.com/vim-airline/vim-airline-themes
         fi
+        if [ ! -d ~/.vim/bundle/vim-autotag ]; then
+            git clone https://github.com/craigemery/vim-autotag
+        fi
         if [ ! -d ~/.vim/bundle/vim-bookmarks ]; then
             git clone https://github.com/MattesGroeger/vim-bookmarks.git
         fi
