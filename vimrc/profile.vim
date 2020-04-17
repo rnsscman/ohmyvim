@@ -10,6 +10,7 @@ set visualbell
 set showmatch
 set cursorcolumn
 set cursorline
+set colorcolumn=81
 " tab and space, second way from :help tabstop
 set tabstop=4
 set shiftwidth=4
