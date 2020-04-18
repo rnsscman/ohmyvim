@@ -29,3 +29,5 @@ set smartcase
 " edit
 set autowrite
 set autoread
+
+let mapleader = ","
