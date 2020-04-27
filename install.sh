@@ -1,36 +1,36 @@
 #!/bin/bash
 
-USE_PLUGIN=0
+use_plugin=false
 if [[ "$OSTYPE" == *"darwin"* ]]; then
-    if [ ! "$(command -v brew)" ]; then
-        echo "[error] brew is not installed"
+    if [ -z "$(command -v brew)" ]; then
+        echo "brew is NOT installed!"
         exit 1
     fi
-    USE_PLUGIN=1
-    brew install vim
+    use_plugin=true
+    brew install vim curl
 elif [ "$OSTYPE" = "linux-gnu" ]; then
-    USE_PLUGIN=1
-    sudo apt install vim-gnome
+    use_plugin=true
+    sudo apt install vim-gnome curl
 elif [ "$OSTYPE" = "cygwin" ]; then
-    if [ ! "$(command -v apt-cyg)" ]; then
-        echo "[error] apt-cyg is not installed"
+    if [ -z "$(command -v apt-cyg)" ]; then
+        echo "apt-cyg is NOT installed!"
         exit 1
     fi
     apt-cyg install vim
 elif [ "$OSTYPE" = "msys" ]; then
-    echo "no requirement"
+    :
 else
-    echo "[error] This OS is not supported"
+    echo "This OS is NOT supported!"
     exit 1
 fi
 
-if [ "$USE_PLUGIN" -ne 0 ]; then
-    # plugin manager install
-    if [ ! "$(command -v curl)" ]; then
-        echo "[error] curl is not installed"
+if [ "$use_plugin" = "true" ]; then
+    if [ -z "$(command -v curl)" ]; then
+        echo "curl is NOT installed!"
         exit 1
     fi
 
+    # plugin manager install
     mkdir -p ~/.vim/autoload ~/.vim/bundle && \
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
@@ -42,62 +42,78 @@ if [ "$USE_PLUGIN" -ne 0 ]; then
             git clone https://github.com/dracula/vim dracula
         fi
         if [ ! -d ~/.vim/bundle/gruvbox ]; then
-            git clone https://github.com/morhetz/gruvbox.git
+            git clone https://github.com/morhetz/gruvbox.git gruvbox
         fi
         if [ ! -d ~/.vim/bundle/onehalf ]; then
-            git clone https://github.com/sonph/onehalf.git
+            git clone https://github.com/sonph/onehalf.git onehalf
             cp -v onehalf/vim/colors/* ../colors
         fi
         # OTHERS
-        if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
-            git clone https://github.com/kien/ctrlp.vim
+        # airline
+        if [ ! -d ~/.vim/bundle/airline ]; then
+            git clone https://github.com/vim-airline/vim-airline airline
         fi
+        # airline-themes
+        if [ ! -d ~/.vim/bundle/airline-themes ]; then
+            git clone https://github.com/vim-airline/vim-airline-themes airline-themes
+        fi
+        # bookmarks
+        if [ ! -d ~/.vim/bundle/bookmarks ]; then
+            git clone https://github.com/MattesGroeger/vim-bookmarks.git bookmarks
+        fi
+        # coc.nvim
+        if [ ! -d ~/.vim/pack/coc/start ]; then
+            if [ -d ~/GitHub/vim/script ] && [ -f ~/GitHub/vim/script/setup_coc.sh ]; then
+                ~/GitHub/vim/script/setup_coc.sh
+            fi
+        fi
+        # ctrlp
+        if [ ! -d ~/.vim/bundle/ctrlp ]; then
+            git clone https://github.com/kien/ctrlp.vim ctrlp
+        fi
+        # easymotion
+        if [ ! -d ~/.vim/bundle/easymotion ]; then
+            git clone https://github.com/easymotion/vim-easymotion easymotion
+        fi
+        # fugitive
+        if [ ! -d ~/.vim/bundle/fugitive ]; then
+            git clone https://github.com/tpope/vim-fugitive fugitive
+        fi
+        # gitgutter
+        if [ ! -d ~/.vim/bundle/gitgutter ]; then
+            git clone https://github.com/airblade/vim-gitgutter gitgutter
+        fi
+        # indentline
         if [ ! -d ~/.vim/bundle/indentline ]; then
-            git clone https://github.com/yggdroot/indentline
+            git clone https://github.com/yggdroot/indentline indentline
         fi
+        # nerdcommenter
         if [ ! -d ~/.vim/bundle/nerdcommenter ]; then
-            git clone https://github.com/scrooloose/nerdcommenter
+            git clone https://github.com/scrooloose/nerdcommenter nerdcommenter
         fi
+        # nerdtree
         if [ ! -d ~/.vim/bundle/nerdtree ]; then
-            git clone https://github.com/scrooloose/nerdtree
+            git clone https://github.com/scrooloose/nerdtree nerdtree
         fi
-        if [ ! -d ~/.vim/bundle/rainbow_parentheses.vim ]; then
-            git clone https://github.com/kien/rainbow_parentheses.vim.git
+        # signature
+        if [ ! -d ~/.vim/bundle/signature ]; then
+            git clone https://github.com/kshenoy/vim-signature.git signature
         fi
+        # snippets
+        if [ ! -d ~/.vim/bundle/snippets ]; then
+            git clone https://github.com/honza/vim-snippets snippets
+        fi
+        # tagbar
         if [ ! -d ~/.vim/bundle/tagbar ]; then
-            git clone https://github.com/majutsushi/tagbar
-        fi
-        if [ ! -d ~/.vim/bundle/vim-airline ]; then
-            git clone https://github.com/vim-airline/vim-airline
-        fi
-        if [ ! -d ~/.vim/bundle/vim-airline-themes ]; then
-            git clone https://github.com/vim-airline/vim-airline-themes
-        fi
-        if [ ! -d ~/.vim/bundle/vim-autotag ]; then
-            git clone https://github.com/craigemery/vim-autotag
-        fi
-        if [ ! -d ~/.vim/bundle/vim-bookmarks ]; then
-            git clone https://github.com/MattesGroeger/vim-bookmarks.git
-        fi
-        if [ ! -d ~/.vim/bundle/vim-easymotion ]; then
-            git clone https://github.com/easymotion/vim-easymotion
-        fi
-        if [ ! -d ~/.vim/bundle/vim-fugitive ]; then
-            git clone https://github.com/tpope/vim-fugitive
-        fi
-        if [ ! -d ~/.vim/bundle/vim-gitgutter ]; then
-            git clone https://github.com/airblade/vim-gitgutter
-        fi
-        if [ ! -d ~/.vim/bundle/vim-signature ]; then
-            git clone https://github.com/kshenoy/vim-signature.git
+            git clone https://github.com/majutsushi/tagbar tagbar
         fi
         cd -
     fi
-    if [ ! "$(command -v gtags)" ] ||
-        [ ! -e ~/.vim/plugin/gtags.vim ] ||
-        [ ! -e ~/.vim/plugin/gtags-cscope.vim ]; then
+    if [ -z "$(command -v gtags)" ] ||
+        [ ! -f ~/.vim/plugin/gtags.vim ] ||
+        [ ! -f ~/.vim/plugin/gtags-cscope.vim ]; then
         # gtags install
-        if [ -e ./.setup_gtags.sh ]; then
+        if [ -f ./.setup_gtags.sh ]; then
             source ./.setup_gtags.sh
         fi
     fi
@@ -106,18 +122,23 @@ fi
 # .vimrc install
 if [ -d ./vimrc ]; then
     echo "let \$myvimrootdir= "\"$PWD\" > vimrc/.vimrc
-    if [ -e ./vimrc/profile.vim ]; then
+    # profile
+    if [ -f ./vimrc/profile.vim ]; then
         echo "source \$myvimrootdir/vimrc/profile.vim" >> vimrc/.vimrc
     fi
-    if [ -e ./vimrc/keymap.vim ]; then
+    # keymap
+    if [ -f ./vimrc/keymap.vim ]; then
         echo "source \$myvimrootdir/vimrc/keymap.vim" >> vimrc/.vimrc
     fi
-    if [ -e ./vimrc/function.vim ]; then
+    # function
+    if [ -f ./vimrc/function.vim ]; then
         echo "source \$myvimrootdir/vimrc/function.vim" >> vimrc/.vimrc
     fi
-    if [ "$USE_PLUGIN" -ne 0 ] && [ -e ./vimrc/plugin_config.vim ]; then
+    # plugin_config
+    if [ -f ./vimrc/plugin_config.vim ] && [ "$use_plugin" = "true" ]; then
         echo "source \$myvimrootdir/vimrc/plugin_config.vim" >> vimrc/.vimrc
     fi
+    # clipboard
     if [[ "$OSTYPE" == *"darwin"* ]]; then
         echo "set clipboard=unnamed" >> vimrc/.vimrc
     elif [ "$OSTYPE" = "linux-gnu" ]; then

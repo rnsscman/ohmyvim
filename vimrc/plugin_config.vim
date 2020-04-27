@@ -58,7 +58,180 @@ if filereadable(expand("~/.vim/plugin/gtags-cscope.vim"))
 endif
 
 " SET OTHERS
-if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
+" airline
+if isdirectory(expand("~/.vim/bundle/airline"))
+    " Automatically displays all buffers when there's only one tab open.
+    let g:airline#extensions#tabline#enabled = 1
+
+    " Separators can be configured independently for the tabline, so here is how
+    " you can define "straight" tabs:
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+
+    " In addition, you can also choose which path formatter airline uses. This
+    " affects how file paths are displayed in each individual tab as well as the
+    " current buffer indicator in the upper right. To do so, set the formatter
+    " field with:
+    let g:airline#extensions#tabline#formatter = 'default'
+endif
+
+" airline-themes
+if isdirectory(expand("~/.vim/bundle/airline-themes"))
+    " USING A THEME
+    let g:airline_theme='simple'
+endif
+
+" bookmarks
+if isdirectory(expand("~/.vim/bundle/bookmarks"))
+    let g:bookmark_save_per_working_dir = 1
+    let g:bookmark_auto_save = 1
+endif
+
+" coc.nvim
+if isdirectory(expand("~/.vim/pack/coc/start"))
+    " TextEdit might fail if hidden is not set.
+    set hidden
+
+    " Some servers have issues with backup files, see #649.
+    set nobackup
+    set nowritebackup
+
+    " Give more space for displaying messages.
+    set cmdheight=2
+
+    " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+    " delays and poor user experience.
+    set updatetime=300
+
+    " Don't pass messages to |ins-completion-menu|.
+    set shortmess+=c
+
+    " Always show the signcolumn, otherwise it would shift the text each time
+    " diagnostics appear/become resolved.
+    " set signcolumn=yes
+
+    " Use tab for trigger completion with characters ahead and navigate.
+    " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+    " other plugin before putting this into your config.
+    inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use <c-space> to trigger completion.
+    inoremap <silent><expr> <c-space> coc#refresh()
+
+    " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+    " position. Coc only does snippet and additional edit on confirm.
+    if exists('*complete_info')
+        inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    else
+        imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    endif
+
+    " Use `[g` and `]g` to navigate diagnostics
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " GoTo code navigation.
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+
+    " Use K to show documentation in preview window.
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocAction('doHover')
+        endif
+    endfunction
+
+    " Highlight the symbol and its references when holding the cursor.
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+
+    " Symbol renaming.
+    nmap <leader>rn <Plug>(coc-rename)
+
+    " Formatting selected code.
+    " xmap <leader>f  <Plug>(coc-format-selected)
+    " nmap <leader>f  <Plug>(coc-format-selected)
+
+    augroup mygroup
+        autocmd!
+        " Setup formatexpr specified filetype(s).
+        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+        " Update signature help on jump placeholder.
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    augroup end
+
+    " Applying codeAction to the selected region.
+    " Example: `<leader>aap` for current paragraph
+    xmap <leader>a  <Plug>(coc-codeaction-selected)
+    nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+    " Remap keys for applying codeAction to the current line.
+    nmap <leader>ac  <Plug>(coc-codeaction)
+    " Apply AutoFix to problem on the current line.
+    nmap <leader>qf  <Plug>(coc-fix-current)
+
+    " Introduce function text object
+    " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+    xmap if <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap if <Plug>(coc-funcobj-i)
+    omap af <Plug>(coc-funcobj-a)
+
+    " Use <TAB> for selections ranges.
+    " NOTE: Requires 'textDocument/selectionRange' support from the language server.
+    " coc-tsserver, coc-python are the examples of servers that support it.
+    nmap <silent> <TAB> <Plug>(coc-range-select)
+    xmap <silent> <TAB> <Plug>(coc-range-select)
+
+    " Add `:Format` command to format current buffer.
+    command! -nargs=0 Format :call CocAction('format')
+
+    " Add `:Fold` command to fold current buffer.
+    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+    " Add `:OR` command for organize imports of the current buffer.
+    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+    " Add (Neo)Vim's native statusline support.
+    " NOTE: Please see `:h coc-status` for integrations with external plugins that
+    " provide custom statusline: lightline.vim, vim-airline.
+    set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+    " Mappings using CoCList:
+    " Show all diagnostics.
+    nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+    " Manage extensions.
+    nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+    " Show commands.
+    nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+    " Find symbol of current document.
+    nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+    " Search workspace symbols.
+    nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+    " Do default action for next item.
+    nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+    " Do default action for previous item.
+    nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+    " Resume latest coc list.
+    nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+endif
+
+" ctrlp
+if isdirectory(expand("~/.vim/bundle/ctrlp"))
     " Change the default mapping and the default command to invoke CtrlP:
     " let g:ctrlp_map = '<c-p>'
     let g:ctrlp_map = ''
@@ -75,10 +248,41 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
     set runtimepath^=~/.vim/bundle/ctrlp.vim
 endif
 
+" easymotion
+if isdirectory(expand("~/.vim/bundle/easymotion"))
+    let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
+    " `s{char}{label}`
+    nmap s <Plug>(easymotion-overwin-f)
+    " or
+    " `s{char}{char}{label}`
+    " Need one more keystroke, but on average, it may be more comfortable.
+    nmap s <Plug>(easymotion-overwin-f2)
+
+    " Turn on case-insensitive feature
+    " let g:EasyMotion_smartcase = 1
+    let g:EasyMotion_smartcase = 0
+
+    " JK motions: Line motions
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+endif
+
+" fugitive
+if isdirectory(expand("~/.vim/bundle/fugitive"))
+endif
+
+" gitgutter
+if isdirectory(expand("~/.vim/bundle/gitgutter"))
+endif
+
+" indentline
 if isdirectory(expand("~/.vim/bundle/indentline"))
     let g:indentLine_enabled = 1
 endif
 
+" nerdcommenter
 if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
     " Post Installation
     filetype plugin on
@@ -127,6 +331,7 @@ if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
     " [count]<leader>cu         |NERDComUncommentLine|  UncommentsUncomments the selected line(s).Uncomments the selected line(s). the selected line(s).
 endif
 
+" nerdtree
 if isdirectory(expand("~/.vim/bundle/nerdtree"))
     " How can I open a NERDTree automatically when vim starts up?
     " autocmd vimenter * NERDTree
@@ -149,76 +354,15 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
     nmap <Leader>n :NERDTreeToggle<CR>
 endif
 
-
-if isdirectory(expand("~/.vim/bundle/rainbow_parentheses.vim"))
-    " au VimEnter * RainbowParenthesesToggle
-    " au Syntax * RainbowParenthesesLoadRound
-    " au Syntax * RainbowParenthesesLoadSquare
-    " au Syntax * RainbowParenthesesLoadBraces
+" signature
+if isdirectory(expand("~/.vim/bundle/signature"))
 endif
 
-if isdirectory(expand("~/.vim/bundle/srcexpl"))
-    " // The switch of the Source Explorer
-    nmap <F8> :SrcExplToggle<CR>
-    "
-    " // Set the height of Source Explorer window
-    let g:SrcExpl_winHeight = 8
-    "
-    " // Set 100 ms for refreshing the Source Explorer
-    let g:SrcExpl_refreshTime = 100
-    "
-    " // Set "Enter" key to jump into the exact definition context
-    let g:SrcExpl_jumpKey = "<ENTER>"
-    "
-    " // Set "Space" key for back from the definition context
-    let g:SrcExpl_gobackKey = "<SPACE>"
-    "
-    " // In order to avoid conflicts, the Source Explorer should know what plugins
-    " // except itself are using buffers. And you need add their buffer names into
-    " // below listaccording to the command ":buffers!"
-    let g:SrcExpl_pluginList = [
-            \ "NERD_tree_1",
-            \ "__Tagbar__.1",
-            \ "Source_Explorer"
-        \ ]
-    "
-    " // The color schemes used by Source Explorer. There are five color schemes
-    " // supported for now - Red, Cyan, Green, Yellow and Magenta. Source Explorer
-    " // will pick up one of them randomly when initialization.
-    let g:SrcExpl_colorSchemeList = [
-            \ "Red",
-            \ "Cyan",
-            \ "Green",
-            \ "Yellow",
-            \ "Magenta"
-        \ ]
-    "
-    " // Enable/Disable the local definition searching, and note that this is not
-    " // guaranteed to work, the Source Explorer doesn't check the syntax for now.
-    " // It only searches for a match with the keyword according to command 'gd'
-    " let g:SrcExpl_searchLocalDef = 1
-    "
-    " // Workaround for Vim bug @https://goo.gl/TLPK4K as any plugins using autocmd for
-    " // BufReadPre might have conflicts with Source Explorer. e.g. YCM, Syntastic etc.
-    " let g:SrcExpl_nestedAutoCmd = 1
-    "
-    " // Do not let the Source Explorer update the tags file when opening
-    " let g:SrcExpl_isUpdateTags = 0
-    "
-    " // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to
-    " //  create/update a tags file
-    " let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
-    "
-    " // Set "<F12>" key for updating the tags file artificially
-    " let g:SrcExpl_updateTagsKey = "<F12>"
-    "
-    " // Set "<F3>" key for displaying the previous definition in the jump list
-    " let g:SrcExpl_prevDefKey = "<F3>"
-    "
-    " // Set "<F4>" key for displaying the next definition in the jump list
-    " let g:SrcExpl_nextDefKey = "<F4>"
+" snippets
+if isdirectory(expand("~/.vim/bundle/snippets"))
 endif
 
+" tagbar
 if isdirectory(expand("~/.vim/bundle/tagbar"))
     if filereadable("./GTAGS")
         autocmd StdinReadPre * let s:std_in=1
@@ -228,59 +372,3 @@ if isdirectory(expand("~/.vim/bundle/tagbar"))
     nmap <Leader>t :TagbarToggle<CR>
 endif
 
-if isdirectory(expand("~/.vim/bundle/vim-airline"))
-    " Automatically displays all buffers when there's only one tab open.
-    let g:airline#extensions#tabline#enabled = 1
-
-    " Separators can be configured independently for the tabline, so here is how
-    " you can define "straight" tabs:
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
-
-    " In addition, you can also choose which path formatter airline uses. This
-    " affects how file paths are displayed in each individual tab as well as the
-    " current buffer indicator in the upper right. To do so, set the formatter
-    " field with:
-    let g:airline#extensions#tabline#formatter = 'default'
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
-    " USING A THEME
-    let g:airline_theme='simple'
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-bookmarks"))
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-easymotion"))
-    let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
-    " `s{char}{label}`
-    nmap s <Plug>(easymotion-overwin-f)
-    " or
-    " `s{char}{char}{label}`
-    " Need one more keystroke, but on average, it may be more comfortable.
-    nmap s <Plug>(easymotion-overwin-f2)
-
-    " Turn on case-insensitive feature
-    " let g:EasyMotion_smartcase = 1
-    let g:EasyMotion_smartcase = 0
-
-    " JK motions: Line motions
-    map <Leader>j <Plug>(easymotion-j)
-    map <Leader>k <Plug>(easymotion-k)
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-fugitive"))
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-gitgutter"))
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-signature"))
-endif
-
-if isdirectory(expand("~/.vim/bundle/youcompleteme"))
-    let g:ycm_min_num_of_chars_for_completion = 99
-endif
