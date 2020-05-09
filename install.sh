@@ -10,7 +10,7 @@ if [[ "$OSTYPE" == *"darwin"* ]]; then
     brew install vim curl
 elif [ "$OSTYPE" = "linux-gnu" ]; then
     use_plugin=true
-    sudo apt install vim-gnome curl
+    sudo apt install vim-gtk3 curl
 elif [ "$OSTYPE" = "cygwin" ]; then
     if [ -z "$(command -v apt-cyg)" ]; then
         echo "apt-cyg is NOT installed!"
@@ -37,18 +37,6 @@ if [ "$use_plugin" = "true" ]; then
     # plugin install
     if [ -d ~/.vim/bundle ]; then
         cd ~/.vim/bundle
-        # THEME
-        if [ ! -d ~/.vim/bundle/dracula ]; then
-            git clone https://github.com/dracula/vim dracula
-        fi
-        if [ ! -d ~/.vim/bundle/gruvbox ]; then
-            git clone https://github.com/morhetz/gruvbox.git gruvbox
-        fi
-        if [ ! -d ~/.vim/bundle/onehalf ]; then
-            git clone https://github.com/sonph/onehalf.git onehalf
-            cp -v onehalf/vim/colors/* ../colors
-        fi
-        # OTHERS
         # airline
         if [ ! -d ~/.vim/bundle/airline ]; then
             git clone https://github.com/vim-airline/vim-airline airline
@@ -70,6 +58,10 @@ if [ "$use_plugin" = "true" ]; then
         # ctrlp
         if [ ! -d ~/.vim/bundle/ctrlp ]; then
             git clone https://github.com/kien/ctrlp.vim ctrlp
+        fi
+        # dracula
+        if [ ! -d ~/.vim/bundle/dracula ]; then
+            git clone https://github.com/dracula/vim dracula
         fi
         # easymotion
         if [ ! -d ~/.vim/bundle/easymotion ]; then
