@@ -10,7 +10,7 @@ if [[ "$OSTYPE" == *"darwin"* ]]; then
     brew install vim curl wget
 elif [ "$OSTYPE" = "linux-gnu" ]; then
     use_plugin=true
-    sudo apt install vim-gnome curl wget
+    sudo apt install vim-gtk3 curl wget
 elif [ "$OSTYPE" = "cygwin" ]; then
     if [ -z "$(command -v apt-cyg)" ]; then
         echo "apt-cyg is NOT installed!"
