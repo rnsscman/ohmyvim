@@ -1,7 +1,6 @@
 if has("syntax")
     syntax on
 endif
-filetype plugin indent on
 
 " display
 set number

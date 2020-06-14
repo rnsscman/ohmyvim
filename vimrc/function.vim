@@ -28,13 +28,14 @@ function! SayWhatIsSet(word)
             endfor
             if found == 0 | echo "no" | endif
         else
-            echo warn_msg_head . " : " . "'.config' does NOT exist"
+            echo warn_msg_head . " : " . "'.config' file does NOT exist !"
         endif
-    else
-        echo warn_msg_head . " : " . "this word is NOT 'CONFIG'"
+    els
+        echo warn_msg_head . " : " . "This word does NOT start with 'CONFIG' !"
     endif
 endfunction
 command! SayWhatIsSet call SayWhatIsSet(expand("<cword>"))
+nmap <silent> <leader>s :call SayWhatIsSet(expand("<cword>"))<CR>
 
 " remove
 command! RemoveTrailingSpace :%s/\s\+$//ge
@@ -43,4 +44,3 @@ command! RemoveNewLineChar :%s///ge
 " toggle
 command! LineNumToggle :set number!
 command! PasteToggle :set paste!
-

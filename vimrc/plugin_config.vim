@@ -1,20 +1,45 @@
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" SET THEME
-set background=dark
-" set background=light
-if isdirectory(expand("~/.vim/bundle/dracula"))
-    colorscheme dracula
-endif
-" if isdirectory(expand("~/.vim/bundle/gruvbox"))
-"     colorscheme gruvbox
-" endif
-" if isdirectory(expand("~/.vim/bundle/onehalf"))
-"     colorscheme onehalfdark
-"     let g:airline_theme='onehalfdark'
-" endif
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mattesgroeger/vim-bookmarks'
+Plugin 'neoclide/coc.nvim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'dracula/vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'yggdroot/indentline'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kshenoy/vim-signature'
+Plugin 'honza/vim-snippets'
+Plugin 'majutsushi/tagbar'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
 "
-" SET TAG-SYSTEM
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 if filereadable(expand("~/.vim/plugin/gtags.vim"))
     let g:Gtags_VerticalWindow = 0
     let g:Gtags_Auto_Map = 0
@@ -55,11 +80,12 @@ if filereadable(expand("~/.vim/plugin/gtags-cscope.vim"))
     nmap <C-\><C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
     nmap <C-\><C-\>a :cs find a <C-R>=expand("<cword>")<CR><CR>
     nmap <C-\><C-\><C-]> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+
+    nmap <C-\>] :vs<CR> :exec("tag ".expand("<cword>"))<CR>
 endif
 
-" SET OTHERS
 " airline
-if isdirectory(expand("~/.vim/bundle/airline"))
+if isdirectory(expand("~/.vim/bundle/vim-airline"))
     " Automatically displays all buffers when there's only one tab open.
     let g:airline#extensions#tabline#enabled = 1
 
@@ -76,19 +102,19 @@ if isdirectory(expand("~/.vim/bundle/airline"))
 endif
 
 " airline-themes
-if isdirectory(expand("~/.vim/bundle/airline-themes"))
+if isdirectory(expand("~/.vim/bundle/vim-airline-themes"))
     " USING A THEME
     let g:airline_theme='simple'
 endif
 
 " bookmarks
-if isdirectory(expand("~/.vim/bundle/bookmarks"))
+if isdirectory(expand("~/.vim/bundle/vim-bookmarks"))
     let g:bookmark_save_per_working_dir = 1
     let g:bookmark_auto_save = 1
 endif
 
 " coc.nvim
-if isdirectory(expand("~/.vim/pack/coc/start"))
+if isdirectory(expand("~/.vim/bundle/coc.nvim"))
     " TextEdit might fail if hidden is not set.
     set hidden
 
@@ -231,7 +257,7 @@ if isdirectory(expand("~/.vim/pack/coc/start"))
 endif
 
 " ctrlp
-if isdirectory(expand("~/.vim/bundle/ctrlp"))
+if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
     " Change the default mapping and the default command to invoke CtrlP:
     " let g:ctrlp_map = '<c-p>'
     let g:ctrlp_map = ''
@@ -248,8 +274,15 @@ if isdirectory(expand("~/.vim/bundle/ctrlp"))
     set runtimepath^=~/.vim/bundle/ctrlp.vim
 endif
 
+" dracula
+if isdirectory(expand("~/.vim/bundle/vim"))
+    set background=dark
+    " set background=light
+    colorscheme dracula
+endif
+
 " easymotion
-if isdirectory(expand("~/.vim/bundle/easymotion"))
+if isdirectory(expand("~/.vim/bundle/vim-easymotion"))
     let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
     " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -270,11 +303,11 @@ if isdirectory(expand("~/.vim/bundle/easymotion"))
 endif
 
 " fugitive
-if isdirectory(expand("~/.vim/bundle/fugitive"))
+if isdirectory(expand("~/.vim/bundle/vim-fugitive"))
 endif
 
 " gitgutter
-if isdirectory(expand("~/.vim/bundle/gitgutter"))
+if isdirectory(expand("~/.vim/bundle/vim-gitgutter"))
 endif
 
 " indentline
@@ -355,11 +388,11 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
 endif
 
 " signature
-if isdirectory(expand("~/.vim/bundle/signature"))
+if isdirectory(expand("~/.vim/bundle/vim-signature"))
 endif
 
 " snippets
-if isdirectory(expand("~/.vim/bundle/snippets"))
+if isdirectory(expand("~/.vim/bundle/vim-snippets"))
 endif
 
 " tagbar

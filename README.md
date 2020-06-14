@@ -1,1 +1,1 @@
-# vim environment setup script
+# VIM Configuration Setup
