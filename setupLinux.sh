@@ -1,24 +1,27 @@
 #!/bin/bash
 
+packages=(
+    "autoconf"
+    "automake"
+    "bison"
+    "flex"
+    "gperf"
+    "libtool"
+    "m4"
+    "perl"
+    "libtool-bin"
+    "libltdl-dev"
+    "libncurses5-dev"
+    "libncursesw5-dev"
+    "texinfo"
+    "wget"
+    "git"
+    "vim-gtk3"
+)
+
 if [ -z "$(command -v gtags)" ] ||
-    [ ! -f $HOME/.vim/plugin/gtags.vim ] ||
-    [ ! -f $HOME/.vim/plugin/gtags-cscope.vim ]; then
-    packages=(
-        "autoconf"
-        "automake"
-        "bison"
-        "flex"
-        "gperf"
-        "libtool"
-        "m4"
-        "perl"
-        "libtool-bin"
-        "libltdl-dev"
-        "libncurses5-dev"
-        "libncursesw5-dev"
-        "texinfo"
-        "wget"
-    )
+    [ ! -f ~/.vim/plugin/gtags.vim ] ||
+    [ ! -f ~/.vim/plugin/gtags-cscope.vim ]; then
     sudo apt update
     for package in "${packages[@]}"; do
         if [ -z "$(command -v $package)" ]; then
@@ -26,22 +29,23 @@ if [ -z "$(command -v gtags)" ] ||
         fi
     done
     sudo apt autoremove
-    (
+
     GTAGS_VERSION="global-6.6.3"
     GTAGS_ARCHIVE="$GTAGS_VERSION.tar.gz"
     wget http://tamacom.com/global/$GTAGS_ARCHIVE
     tar zxf $GTAGS_ARCHIVE
     if [ -d $GTAGS_VERSION ]; then
+        (
         cd $GTAGS_VERSION
         sh reconf.sh
         ./configure
         make && sudo make install
-        rm -rf global*
-        mkdir -p $HOME/.vim/plugin
-        cp -v /usr/local/share/gtags/gtags.vim $HOME/.vim/plugin/gtags.vim
-        cp -v /usr/local/share/gtags/gtags-cscope.vim $HOME/.vim/plugin/gtags-cscope.vim
+        mkdir -p ~/.vim/plugin
+        cp -v /usr/local/share/gtags/gtags.vim ~/.vim/plugin/gtags.vim
+        cp -v /usr/local/share/gtags/gtags-cscope.vim ~/.vim/plugin/gtags-cscope.vim
+        )
     fi
-    )
+    rm -rf global*
 fi
 
 if [ -d vimrc ]; then
@@ -68,4 +72,6 @@ if [ -d vimrc ]; then
     ln -svf $PWD/vimrc/.vimrc ~/.vimrc
 fi
 
+mkdir -p ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall

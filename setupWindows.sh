@@ -17,4 +17,3 @@ if [ -d vimrc ]; then
     # why not work '.' after 'ln', so '$PWD' is used
     ln -svf $PWD/vimrc/.vimrc ~/.vimrc
 fi
-
