@@ -10,6 +10,7 @@ packages=(
     "m4"
     "perl"
     "wget"
+    "curl"
     "git"
     "vim"
 )
@@ -67,4 +68,7 @@ fi
 
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ -z "$(command -v node)" ]; then
+    curl -sL install-node.now.sh | sh
+fi
 vim +PluginInstall +qall
