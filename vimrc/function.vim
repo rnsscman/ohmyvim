@@ -37,6 +37,20 @@ endfunction
 command! SayWhatIsSet call SayWhatIsSet(expand("<cword>"))
 nmap <silent> <leader>s :call SayWhatIsSet(expand("<cword>"))<CR>
 
+function! SayGitBlameLine()
+    let status = system("git status")
+    if stridx(status, "fatal:") == 0
+        echo "Not a git repository"
+    else
+        let filename = expand('%:p')
+        let linenum = line(".")
+        let blame = system('git blame "$(basename '.filename.')" -L "$(basename '.linenum.')",+1')
+        echo strpart(blame, 0, stridx(blame, ')') + 1)
+    endif
+endfunction
+command! SayGitBlameLine call SayGitBlameLine()
+nmap <silent> <leader>g :call SayGitBlameLine()<CR>
+
 " remove
 command! RemoveTrailingSpace :%s/\s\+$//ge
 command! RemoveNewLineChar :%s///ge
