@@ -42,9 +42,9 @@ function! SayGitBlameLine()
     if stridx(status, "fatal:") == 0
         echo "Not a git repository"
     else
-        let filename = expand('%:p')
+        let filename = strpart(expand('%:p'), strlen(getcwd()) + 1)
         let linenum = line(".")
-        let blame = system('git blame "$(basename '.filename.')" -L "$(basename '.linenum.')",+1')
+        let blame = system('git blame '.filename.' -L '.linenum.',+1')
         echo strpart(blame, 0, stridx(blame, ')') + 1)
     endif
 endfunction
