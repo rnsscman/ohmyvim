@@ -30,3 +30,5 @@ set autowrite
 set autoread
 
 let mapleader = ","
+
+autocmd FileType markdown setlocal syntax=off
