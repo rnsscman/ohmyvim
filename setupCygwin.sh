@@ -21,6 +21,7 @@ function gtags_install() {
         wget -O global.zip http://adoxa.altervista.org/global/dl.php?f=win32
         [ -d /usr/global/ ] || mkdir -p /usr/global/
         unzip global.zip -d /usr/global/
+        chmod 755 /usr/global/bin/*
         rm -v global.zip
         local plugins=(
             "gtags.vim"
@@ -64,10 +65,10 @@ function plugins_install() {
 }
 
 function main() {
-    packages_install
+    # packages_install
     gtags_install
-    vimrc_install
-    plugins_install
+    # vimrc_install
+    # plugins_install
 }
 
 main
