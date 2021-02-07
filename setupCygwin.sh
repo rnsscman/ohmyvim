@@ -2,7 +2,6 @@
 
 function packages_install() {
     packages=(
-        "git"
         "unzip"
         "vim"
         "wget"
@@ -21,8 +20,8 @@ function gtags_install() {
         wget -O global.zip http://adoxa.altervista.org/global/dl.php?f=win32
         [ -d /usr/global/ ] || mkdir -p /usr/global/
         unzip global.zip -d /usr/global/
-        chmod 755 /usr/global/bin/*
         rm -v global.zip
+        chmod 755 /usr/global/bin/*
         local plugins=(
             "gtags.vim"
             "gtags-cscope.vim"
@@ -51,24 +50,26 @@ function vimrc_install() {
                 echo "source \$vimconfig/vimrc/$script" >> vimrc/.vimrc
             fi
         done
-        ln -sf $PWD/vimrc/.vimrc ~/.vimrc
+        ln -svf $PWD/vimrc/.vimrc ~/.vimrc
     fi
 }
 
 function plugins_install() {
-    mkdir -p ~/.vim/bundle/
-    (
-    cd ~/.vim/bundle/
-    git clone https://github.com/VundleVim/Vundle.vim.git
-    )
-    vim +PluginInstall +qall
+    if [ ! -d ~/.vim/bundle/Vundle.vim/ ]; then
+        mkdir -p ~/.vim/bundle/
+        (
+        cd ~/.vim/bundle/
+        git clone https://github.com/VundleVim/Vundle.vim.git
+        )
+        vim +PluginInstall +qall
+    fi
 }
 
 function main() {
-    # packages_install
+    packages_install
     gtags_install
-    # vimrc_install
-    # plugins_install
+    vimrc_install
+    plugins_install
 }
 
 main

@@ -1,72 +1,70 @@
 #!/bin/bash
 
-packages=(
-    "autoconf"
-    "automake"
-    "bison"
-    "flex"
-    "gperf"
-    "libtool"
-    "m4"
-    "perl"
-    "wget"
-    "curl"
-    "git"
-    "vim"
-)
-
-if [ -z "$(command -v gtags)" ] ||
-    [ ! -f ~/.vim/plugin/gtags.vim ] ||
-    [ ! -f ~/.vim/plugin/gtags-cscope.vim ]; then
+function packages_install() {
+    packages=(
+        "vim"
+    )
     for package in "${packages[@]}"; do
         if [ -z "$(command -v $package)" ]; then
-            brew install $package
+            apt-cyg install $package
         fi
     done
+}
 
-    GTAGS_VERSION="global-6.6.3"
-    GTAGS_ARCHIVE="$GTAGS_VERSION.tar.gz"
-    wget http://tamacom.com/global/$GTAGS_ARCHIVE
-    tar zxf $GTAGS_ARCHIVE
-    if [ -d $GTAGS_VERSION ]; then
-        (
-        cd $GTAGS_VERSION
-        sh reconf.sh
-        ./configure
-        make && make install
-        mkdir -p ~/.vim/plugin
-        cp -v /usr/local/share/gtags/gtags.vim ~/.vim/plugin/gtags.vim
-        cp -v /usr/local/share/gtags/gtags-cscope.vim ~/.vim/plugin/gtags-cscope.vim
+function gtags_install() {
+    if [ -z "$(command -v gtags)" ] ||
+        [ ! -f ~/.vim/plugin/gtags.vim ] ||
+        [ ! -f ~/.vim/plugin/gtags-cscope.vim ]; then
+        brew install global
+        local plugins=(
+            "gtags.vim"
+            "gtags-cscope.vim"
         )
+        [ -d ~/.vim/plugin/ ] || mkdir -p ~/.vim/plugin/
+        for plugin in ${plugins[@]}; do
+            if [ -f /usr/local/share/gtags/$plugin ]; then
+                cp -v /usr/local/share/gtags/$plugin ~/.vim/plugin/
+            fi
+        done
     fi
-    rm -rf global*
-fi
+}
 
-if [ -d vimrc ]; then
-    echo "let \$vimconfig= "\"$PWD\" > vimrc/.vimrc
-    # profile
-    if [ -f vimrc/profile.vim ]; then
-        echo "source \$vimconfig/vimrc/profile.vim" >> vimrc/.vimrc
+function vimrc_install() {
+    if [ -d vimrc ]; then
+        echo "let \$vimconfig= "\"$PWD\" > vimrc/.vimrc
+        echo "set clipboard=unnamed" >> vimrc/.vimrc
+        local scripts=(
+            "profile.vim"
+            "keymap.vim"
+            "function.vim"
+            "plugin_config.vim"
+        )
+        for script in ${scripts[@]}; do
+            if [ -f vimrc/$script ]; then
+                echo "source \$vimconfig/vimrc/$script" >> vimrc/.vimrc
+            fi
+        done
+        ln -svf $PWD/vimrc/.vimrc ~/.vimrc
     fi
-    # keymap
-    if [ -f vimrc/keymap.vim ]; then
-        echo "source \$vimconfig/vimrc/keymap.vim" >> vimrc/.vimrc
-    fi
-    # function
-    if [ -f vimrc/function.vim ]; then
-        echo "source \$vimconfig/vimrc/function.vim" >> vimrc/.vimrc
-    fi
-    # plugin_config
-    if [ -f vimrc/plugin_config.vim ]; then
-        echo "source \$vimconfig/vimrc/plugin_config.vim" >> vimrc/.vimrc
-    fi
-    # clipboard
-    echo "set clipboard=unnamed" >> vimrc/.vimrc
-    # why not work '.' after 'ln', so '$PWD' is used
-    ln -svf $PWD/vimrc/.vimrc ~/.vimrc
-fi
+}
 
-mkdir -p ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+function plugins_install() {
+    if [ ! -d ~/.vim/bundle/Vundle.vim/ ]; then
+        mkdir -p ~/.vim/bundle/
+        (
+        cd ~/.vim/bundle/
+        git clone https://github.com/VundleVim/Vundle.vim.git
+        )
+        vim +PluginInstall +qall
+    fi
+}
+
+function main() {
+    packages_install
+    gtags_install
+    vimrc_install
+    plugins_install
+}
+
+main
 
