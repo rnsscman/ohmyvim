@@ -9,10 +9,10 @@ if [ -z "$(command -v gtags)" ] ||
         sudo apt install global
     elif [ "$OSTYPE" = "cygwin" ]; then
         wget -O global.zip http://adoxa.altervista.org/global/dl.php?f=win32
-        [ -d /usr/global/ ] || mkdir -p /usr/global/
-        unzip global.zip -d /usr/global/
+        [ -d /usr/local/ ] || mkdir -p /usr/local/
+        unzip global.zip -d /usr/local/
         rm -v global.zip
-        chmod 755 /usr/global/bin/*
+        chmod 755 /usr/local/bin/*
     else
         echo "error : unsupported environment($OSTYPE)"
         exit 1
@@ -23,8 +23,8 @@ if [ -z "$(command -v gtags)" ] ||
     )
     [ -d ~/.vim/plugin/ ] || mkdir -p ~/.vim/plugin/
     for plugin in ${plugins[@]}; do
-        if [ -f /usr/global/share/gtags/$plugin ]; then
-            cp -v /usr/global/share/gtags/$plugin ~/.vim/plugin/
+        if [ -f /usr/local/share/gtags/$plugin ]; then
+            cp -v /usr/local/share/gtags/$plugin ~/.vim/plugin/
         fi
     done
 fi

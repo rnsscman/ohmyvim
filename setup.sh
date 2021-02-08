@@ -3,11 +3,23 @@
 packages=(
     "vim"
 )
-
 function check_packages() {
     for package in "${packages[@]}"; do
         if [ -z "$(command -v $package)" ]; then
             echo "error : no package($package)"
+            exit 1
+        fi
+    done
+}
+
+tools=(
+    ".gtags_install.sh"
+    ".vimrc_install.sh"
+)
+function check_tools() {
+    for tool in "${tools[@]}"; do
+        if [ ! -f $tool ]; then
+            echo "error : no tool($tool)"
             exit 1
         fi
     done
@@ -25,27 +37,24 @@ function plugins_install() {
 }
 
 if [[ $OSTYPE == *"darwin"* ]]; then
-    check_packages
-    sh .gtags_install.sh
-    sh .vimrc_install.sh
-    plugins_install
+    :
 elif [ $OSTYPE = "linux-gnu" ]; then
-    check_packages
-    sh .gtags_install.sh
-    sh .vimrc_install.sh
-    plugins_install
+    :
 elif [ $OSTYPE = "cygwin" ]; then
     packages+=("unzip")
     packages+=("wget")
-    check_packages
-    sh .gtags_install.sh
-    sh .vimrc_install.sh
-    plugins_install
 elif [ $OSTYPE = "msys" ]; then
-    check_packages
-    sh .vimrc_install.sh
+    :
 else
     echo "error : unsupported environment($OSTYPE)"
     exit 1
+fi
+
+check_packages
+check_tools
+sh .vimrc_install.sh
+if [ $OSTYPE != "msys" ]; then
+    sh .gtags_install.sh
+    plugins_install
 fi
 
