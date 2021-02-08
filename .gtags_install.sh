@@ -17,7 +17,7 @@ if [ -z "$(command -v gtags)" ] ||
         echo "error : unsupported environment($OSTYPE)"
         exit 1
     fi
-    local plugins=(
+    plugins=(
         "gtags.vim"
         "gtags-cscope.vim"
     )

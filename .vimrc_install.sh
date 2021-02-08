@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ cd vimrc ]; then
-    local scripts=(
+if [ -d vimrc ]; then
+    scripts=(
         "profile.vim"
         "keymap.vim"
         "function.vim"

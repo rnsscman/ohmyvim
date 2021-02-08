@@ -26,24 +26,24 @@ function plugins_install() {
 
 if [[ $OSTYPE == *"darwin"* ]]; then
     check_packages
-    sh gtags_install.sh
-    sh vimrc_install.sh
+    sh .gtags_install.sh
+    sh .vimrc_install.sh
     plugins_install
 elif [ $OSTYPE = "linux-gnu" ]; then
     check_packages
-    sh gtags_install.sh
-    sh vimrc_install.sh
+    sh .gtags_install.sh
+    sh .vimrc_install.sh
     plugins_install
 elif [ $OSTYPE = "cygwin" ]; then
     packages+=("unzip")
     packages+=("wget")
     check_packages
-    sh gtags_install.sh
-    sh vimrc_install.sh
+    sh .gtags_install.sh
+    sh .vimrc_install.sh
     plugins_install
 elif [ $OSTYPE = "msys" ]; then
     check_packages
-    sh vimrc_install.sh
+    sh .vimrc_install.sh
 else
     echo "error : unsupported environment($OSTYPE)"
     exit 1
