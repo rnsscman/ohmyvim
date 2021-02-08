@@ -12,6 +12,9 @@ if [ -d vimrc ]; then
         scripts+=("plugin_config.vim")
     elif [ "$OSTYPE" = "cygwin" ]; then
         scripts+=("plugin_config_for_cygwin.vim")
+    else
+        # no plugin-config
+        :
     fi
 
     echo "let \$vimconfig= "\"$PWD\" > vimrc/.vimrc
