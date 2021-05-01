@@ -3,6 +3,7 @@
 packages=(
     "vim"
 )
+
 function check_packages() {
     for package in "${packages[@]}"; do
         if [ -z "$(command -v $package)" ]; then
@@ -52,9 +53,9 @@ fi
 
 check_packages
 check_tools
-sh .vimrc_install.sh
+./.vimrc_install.sh
 if [ $OSTYPE != "msys" ]; then
-    sh .gtags_install.sh
+    ./.gtags_install.sh
     plugins_install
 fi
 
